@@ -189,6 +189,7 @@ public class Pagamento extends javax.swing.JDialog {
     public void setValor(String valor){
         txtValor.setText(valor);
         this.valor = valor;
+        //System.out.println(valor);
     }
     
     //config do fram
@@ -196,7 +197,6 @@ public class Pagamento extends javax.swing.JDialog {
         x =  true;
         cbxTotal.setSelected(x);
         estado();
-        
     }
     
     //alterna o valor de x que determina se o txt fica ativo ou não
@@ -219,7 +219,6 @@ public class Pagamento extends javax.swing.JDialog {
         }
     }
     
-    //insere imagens do frame
     public void inserirImg(){
         JButton [] bntImg = {btnDinheiro, btnCartao, btnFiado};
         String [] img = {"money.png", "pay.png","bill.png"};

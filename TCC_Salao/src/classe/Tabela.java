@@ -3,6 +3,7 @@ package classe;
 import ClasseBD.ConexaoBD;
 import java.sql.ResultSet;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Tabela {
@@ -26,15 +27,88 @@ public class Tabela {
             //ele é quem adiciona os dados na tabela
             dtm.addColumn(nomes[i]);
         } 
-        inserirST(query, nomes.length);
+        inserir(query, nomes.length);
     }
     
-    private void inserirST(String q, int col){
+    public void criarTabelas(JTable jTabela, String nomes[]){ 
+            jTabela.setModel(dtm);
+            for(int i =0; i<nomes.length; i++){
+                dtm.addColumn(nomes[i]);
+            }
+    }
+    
+    public void confgTabela(String cod, JTextField txt){
+        boolean fdp = true;
+        String q = "SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '"+cod+"'";
+        if(dtm.getRowCount() != 0){
+            //posso colocar return para melhorar o processamento
+            for(int i =0; i<dtm.getRowCount(); i++ ){
+                if(dtm.getValueAt(i, 0).equals(cod)){
+                    int a = Integer.parseInt(dtm.getValueAt(i, 2).toString());
+                    a++;
+                    dtm.setValueAt(a, i, 2);
+                    fdp = false;
+                    valorQt(i);
+                }
+            }
+        }
+        if(fdp){
+            inserir(q);
+            valorQt(dtm.getRowCount()-1);
+        }
+        somaTotal(txt);
+    }
+    
+    public void limparTabela(JTable jTabela, String nomes[], JTextField txt){
+        dtm = new DefaultTableModel();
+        criarTabelas(jTabela, nomes);
+        txt.setText("");
+    }
+    
+    private void somaTotal(JTextField txt){
+        double b = 0;
+        for(int i = 0; i<dtm.getRowCount(); i++){
+            String a = dtm.getValueAt(i, 4).toString();
+            double c = Double.parseDouble(a);
+            b = b + c;
+            txt.setText(""+b);
+        }
+    }
+    
+    private void valorQt(int i){
+        double c = Double.parseDouble(dtm.getValueAt(i, 3).toString());
+        double b = Double.parseDouble(dtm.getValueAt(i, 2).toString());
+        b = b * c;
+        dtm.setValueAt(b, i, 4);
+    }
+    
+    private void inserir(String q){
+        try{
+            rsresultado = ConexaoBD.rsexecutar(q);
+            String [] row = new String[5];
+            while(rsresultado.next()){
+                int y = 1;
+                for(int i=0;i<row.length;i++){
+                    //adcionaos dados no array
+                    if(i!=2 && i != 4){
+                        row[i] = rsresultado.getString(y);
+                        y++;
+                    }else{
+                        if(i==2){
+                            row[i] = "1";
+                        }
+                    }  
+                }
+                dtm.addRow(row);
+            }
+        }catch(Exception e){e.printStackTrace();}  
+    }
+    
+    private void inserir(String q, int col){
         
         try{
             //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
             //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
-            
             rsresultado = ConexaoBD.rsexecutar(q);
            
             //adicionar as linhas

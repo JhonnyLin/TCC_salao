@@ -4,25 +4,27 @@ import javax.swing.JButton;
 import classe.Imagens;
 import ClasseBD.ConexaoBD;
 import classe.Configuracao;
-import java.sql.ResultSet;
+import classe.Tabela;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 //fazer uma classe só pra chamadas
 public class FrenteCaixa extends javax.swing.JFrame {
-
+    
     public FrenteCaixa() {
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
         inserirImg();
+        
         txtNmCliente.setEnabled(false);
         txtCdCliente.setEnabled(false);
         txtTotais.setEnabled(false);
         rbtServicoActionPerformed(null);
         ConexaoBD.connect();
-        criarTabela();
+        criarTabela.criarTabelas(tblCarrinho, nomes);
         tblCarrinho.setEnabled(false);
     }
+    String [] nomes = {"Cód","Descrição", "Qtde", "Vl Un.", "Vl Total"};
+    Tabela criarTabela = new Tabela();
     Configuracao config = new Configuracao();
     Imagens imge =  new Imagens();
     Cliente c = new Cliente(null, true);
@@ -31,11 +33,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
     Pagamento p = new Pagamento(null, true);
     ServProd s = new ServProd(null, true);
     ConexaoBD cxbd = new ConexaoBD();
-    //prepara model para tabela
-    DefaultTableModel dtm = new DefaultTableModel(); 
-    //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
-    //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
-    ResultSet rsresultado ;
     
 
     @SuppressWarnings("unchecked")
@@ -508,23 +505,25 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCdClienteActionPerformed
 
     private void btnRapido3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido3ActionPerformed
-        confgTabela("3","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '3'");
+        criarTabela.confgTabela("3", txtTotais);
     }//GEN-LAST:event_btnRapido3ActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-          config.telaDialog("Cliente", c);
+        c.inicializar(true);
+        config.telaDialog("Cliente", c);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-//        String x = txtTotais.getText();
-//        if(tblCarrinho.getRowCount()==0){
-//            JOptionPane.showMessageDialog(null, "Não há produtos...");
-//        }else{
-//            chamadaFram(p);
-//            p.setValor(txtTotais.getText());
-//            p.configinicializacao();
-//            limparTabela();
-//        }
+        String x = txtTotais.getText();
+        if(tblCarrinho.getRowCount()==0){
+            JOptionPane.showMessageDialog(null, "Não há produtos...");
+        }else{
+            //System.out.println(txtTotais.getText());            
+            p.setValor(txtTotais.getText());            
+            p.configinicializacao();
+            config.telaDialog("Pagamento", p);
+            criarTabela.limparTabela(tblCarrinho, nomes, txtTotais);
+        }
     
     }//GEN-LAST:event_btnPagarActionPerformed
 
@@ -547,7 +546,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtServicoActionPerformed
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
-       confgTabela( "1","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '1'");
+       criarTabela.confgTabela( "1", txtTotais);
        if(rbtServico.isSelected() == true){
            JOptionPane.showMessageDialog(null, "serviço");
        }else{
@@ -556,75 +555,75 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
-       confgTabela("2","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '2'");
+        criarTabela.confgTabela("2",txtTotais);
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
     private void btnRapido4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido4ActionPerformed
-        confgTabela("4","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '4'");
+        criarTabela.confgTabela("4",txtTotais);
     }//GEN-LAST:event_btnRapido4ActionPerformed
 
     private void btnRapido5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido5ActionPerformed
-        confgTabela("5","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '5'");
+        criarTabela.confgTabela("5", txtTotais);
     }//GEN-LAST:event_btnRapido5ActionPerformed
 
     private void btnRapido6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido6ActionPerformed
-        confgTabela("6","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '6'");
+        criarTabela.confgTabela("6", txtTotais);
     }//GEN-LAST:event_btnRapido6ActionPerformed
 
     private void btnRapido7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido7ActionPerformed
-        confgTabela("7","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '7'");
+        criarTabela.confgTabela("7", txtTotais);
     }//GEN-LAST:event_btnRapido7ActionPerformed
 
     private void btnRapido8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido8ActionPerformed
-        confgTabela("8","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '8'");
+        criarTabela.confgTabela("8", txtTotais);
     }//GEN-LAST:event_btnRapido8ActionPerformed
 
     private void btnRapido9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido9ActionPerformed
-        confgTabela("9","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '9'");
+        criarTabela.confgTabela("9",txtTotais);
     }//GEN-LAST:event_btnRapido9ActionPerformed
 
     private void btnRapido10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido10ActionPerformed
-        confgTabela("10","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '10'");
+        criarTabela.confgTabela("10", txtTotais);
     }//GEN-LAST:event_btnRapido10ActionPerformed
 
     private void btnRapido11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido11ActionPerformed
-        confgTabela("11","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '11'");
+        criarTabela.confgTabela("11",txtTotais);
     }//GEN-LAST:event_btnRapido11ActionPerformed
 
     private void btnRapido12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido12ActionPerformed
-        confgTabela("12","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '12'");
+        criarTabela.confgTabela("12", txtTotais);
     }//GEN-LAST:event_btnRapido12ActionPerformed
 
     private void btnRapido13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido13ActionPerformed
-        confgTabela("13","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '13'");
+        criarTabela.confgTabela("13",txtTotais);
     }//GEN-LAST:event_btnRapido13ActionPerformed
 
     private void btnRapido14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido14ActionPerformed
-        confgTabela("14","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '14'");
+        criarTabela.confgTabela("14",txtTotais);
     }//GEN-LAST:event_btnRapido14ActionPerformed
 
     private void btnRapido15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido15ActionPerformed
-        confgTabela("15","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '15'");
+        criarTabela.confgTabela("15",txtTotais);
     }//GEN-LAST:event_btnRapido15ActionPerformed
 
     private void btnRapido16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido16ActionPerformed
-        confgTabela("16","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '16'");
+        criarTabela.confgTabela("16", txtTotais);
     }//GEN-LAST:event_btnRapido16ActionPerformed
 
     private void btnRapido17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido17ActionPerformed
-        confgTabela("17","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '17'");
+        criarTabela.confgTabela("17", txtTotais);
     }//GEN-LAST:event_btnRapido17ActionPerformed
 
     private void btnRapido18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido18ActionPerformed
-        confgTabela("18","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '18'");
+        criarTabela.confgTabela("18",txtTotais);
     }//GEN-LAST:event_btnRapido18ActionPerformed
 
     private void btnRapido19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido19ActionPerformed
-        confgTabela("19","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '19'");
+        criarTabela.confgTabela("19", txtTotais);
     }//GEN-LAST:event_btnRapido19ActionPerformed
 
     private void btnRapido20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido20ActionPerformed
-        confgTabela("20","SELECT cd_ServProd, nm_ServProd, vl_ServProd FROM servprod WHERE cd_ServProd = '20'");
+        criarTabela.confgTabela("20",txtTotais);
     }//GEN-LAST:event_btnRapido20ActionPerformed
 
     public static void main(String args[]) {
@@ -662,93 +661,93 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }
     
     //minhas clases
-    public void limparTabela(){
-        dtm = new DefaultTableModel();
-        criarTabela();
-        txtTotais.setText("");
-    }
+//    public void limparTabela(){
+//        dtm = new DefaultTableModel();
+//        criarTabela.criarTabelas(tblCarrinho, nomes);
+//        txtTotais.setText("");
+//    }
     
-    private void criarTabela(){   
-            //adiciona as colunas
-            tblCarrinho.setModel(dtm);
-            //qtd colunas
-            int qtdcoluna = 5;
-            String [] nomes = {"Cód","Descrição", "Qtde", "Vl Un.", "Vl Total"};  
-            //add as colunas na tabela
-            for(int i =0; i<qtdcoluna; i++){
-                //adiciona os nomes no dtm que é o model
-                //ele é quem adiciona os dados na tabela
-                dtm.addColumn(nomes[i]);
-            }
-           
-    }
+//    private void criarTabela(){   
+//            //adiciona as colunas
+//            tblCarrinho.setModel(dtm);
+//            //qtd colunas
+//            int qtdcoluna = 5;
+//            String [] nomes = {"Cód","Descrição", "Qtde", "Vl Un.", "Vl Total"};  
+//            //add as colunas na tabela
+//            for(int i =0; i<qtdcoluna; i++){
+//                //adiciona os nomes no dtm que é o model
+//                //ele é quem adiciona os dados na tabela
+//                dtm.addColumn(nomes[i]);
+//            }
+//           
+//    }
     
-    private void confgTabela(String cod, String q){
-        boolean fdp = true;
-        if(dtm.getRowCount() != 0){
-            //posso colocar return para melhorar o processamento
-            for(int i =0; i<dtm.getRowCount(); i++ ){
-                if(dtm.getValueAt(i, 0).equals(cod)){
-                    int a = Integer.parseInt(dtm.getValueAt(i, 2).toString());
-                    a++;
-                    dtm.setValueAt(a, i, 2);
-                    fdp = false;
-                    valorQt(i);
-                }
-            }
-        }
-        if(fdp){
-            inserirSP(q);
-            valorQt(dtm.getRowCount()-1);
-        }
-        somaTotal();
-    }
-    
-    private void somaTotal(){
-        double b = 0;
-        for(int i = 0; i<dtm.getRowCount(); i++){
-            String a = dtm.getValueAt(i, 4).toString();
-            double c = Double.parseDouble(a);
-            b = b + c;
-            txtTotais.setText(""+b);
-        }
-    }
-    
-    private void inserirSP(String q){
-        
-        try{
-            //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
-            //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
-            rsresultado = ConexaoBD.rsexecutar(q);
-           
-            //adicionar as linhas
-            //array que guarda os dados de cada linha
-            String [] row = new String[5];
-            while(rsresultado.next()){
-                int y = 1;
-                for(int i=0;i<row.length;i++){
-                    //adcionaos dados no array
-                    if(i!=2 && i != 4){
-                        row[i] = rsresultado.getString(y);
-                        y++;
-                    }else{
-                        if(i==2){
-                            row[i] = "1";
-                        }
-                    }  
-                }
-                //adicionar a linha toda na tabela
-                dtm.addRow(row);
-            }
-            }catch(Exception e){e.printStackTrace();}  
-        }
-    
-    private void valorQt(int i){
-        double c = Double.parseDouble(dtm.getValueAt(i, 3).toString());
-        double b = Double.parseDouble(dtm.getValueAt(i, 2).toString());
-        b = b * c;
-        dtm.setValueAt(b, i, 4);
-    }
+//    public void confgTabela(String cod, String q){
+//        boolean fdp = true;
+//        if(dtm.getRowCount() != 0){
+//            //posso colocar return para melhorar o processamento
+//            for(int i =0; i<dtm.getRowCount(); i++ ){
+//                if(dtm.getValueAt(i, 0).equals(cod)){
+//                    int a = Integer.parseInt(dtm.getValueAt(i, 2).toString());
+//                    a++;
+//                    dtm.setValueAt(a, i, 2);
+//                    fdp = false;
+//                    valorQt(i);
+//                }
+//            }
+//        }
+//        if(fdp){
+//            inserirSP(q);
+//            valorQt(dtm.getRowCount()-1);
+//        }
+//        somaTotal();
+//    }
+//    
+//    private void somaTotal(){
+//        double b = 0;
+//        for(int i = 0; i<dtm.getRowCount(); i++){
+//            String a = dtm.getValueAt(i, 4).toString();
+//            double c = Double.parseDouble(a);
+//            b = b + c;
+//            txtTotais.setText(""+b);
+//        }
+//    }
+//    
+//    private void inserirSP(String q){
+//        
+//        try{
+//            //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
+//            //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
+//            rsresultado = ConexaoBD.rsexecutar(q);
+//           
+//            //adicionar as linhas
+//            //array que guarda os dados de cada linha
+//            String [] row = new String[5];
+//            while(rsresultado.next()){
+//                int y = 1;
+//                for(int i=0;i<row.length;i++){
+//                    //adcionaos dados no array
+//                    if(i!=2 && i != 4){
+//                        row[i] = rsresultado.getString(y);
+//                        y++;
+//                    }else{
+//                        if(i==2){
+//                            row[i] = "1";
+//                        }
+//                    }  
+//                }
+//                //adicionar a linha toda na tabela
+//                dtm.addRow(row);
+//            }
+//        }catch(Exception e){e.printStackTrace();}  
+//    }
+//    
+//    private void valorQt(int i){
+//        double c = Double.parseDouble(dtm.getValueAt(i, 3).toString());
+//        double b = Double.parseDouble(dtm.getValueAt(i, 2).toString());
+//        b = b * c;
+//        dtm.setValueAt(b, i, 4);
+//    }
  
     public void inserirImg(){
         JButton [] btnImg = {btnPerfil, btnPesquisaSP};

@@ -1,6 +1,7 @@
 package Telas;
 
 
+import classe.Imagens;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -9,25 +10,8 @@ public class FmrLogin extends javax.swing.JFrame {
 
     public FmrLogin() {
         initComponents();
-        String fund = "/img/logo.png";
-        img(fund);
-        
+        img("/img/logo.png");
     }
-
-   public void img(String a){
-   ImageIcon imagem = new ImageIcon(getClass().getResource(a));
-   lblFundos.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(lblFundos.getWidth(),lblFundos.getHeight(), Image.SCALE_SMOOTH)));
-   
-   }
-   public void fechar(){
-   int a = JOptionPane.showConfirmDialog(null,"Deseja sair","Saida",JOptionPane.YES_NO_OPTION);
-   if(a== JOptionPane.YES_OPTION){
-        System.exit(0);
-        }else{
-       repaint();
-   }
-   }
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,7 +75,7 @@ public class FmrLogin extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(397, 303));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    Imagens img = new Imagens();
     private void pwrSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pwrSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pwrSenhaActionPerformed
@@ -107,30 +91,28 @@ public class FmrLogin extends javax.swing.JFrame {
        if(a.equals("") || b.equals("")){
             JOptionPane.showMessageDialog(null, "é obrigatorio o preenchimento dos dois campos");
         }else{
-           for( int cont =0; cont <login.length;cont++ ){
-            if(a.equalsIgnoreCase(login[0][cont])&& b.equalsIgnoreCase(login[1][cont])){
-                c = true;
-                break;
+            for( int cont =0; cont <login.length;cont++ ){
+                if(a.equalsIgnoreCase(login[0][cont])&& b.equalsIgnoreCase(login[1][cont])){
+                    c = true;
+                    break;
+                }
+            } 
+            if(c){
+                Inicio fmr = new Inicio();
+                JOptionPane.showMessageDialog(null, "Bem vindo");
+                fmr.setVisible(true);
+                setResizable(false);
+                setLocationRelativeTo(this);
+                dispose();
+
+            }else{
+                JOptionPane.showMessageDialog(null, "senha ou usuarios incorretos");
             }
-            
-          } 
-           if(c){
-               Inicio fmr = new Inicio();
-               JOptionPane.showMessageDialog(null, "Bem vindo");
-               fmr.setVisible(true);
-               setResizable(false);
-               setLocationRelativeTo(this);
-               dispose();
-               
-           }else{
-               JOptionPane.showMessageDialog(null, "senha ou usuarios incorretos");
-           }
         }
     }//GEN-LAST:event_btnConectActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-       fechar();
-       
+        fechar();
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -171,6 +153,21 @@ public class FmrLogin extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void img(String a){
+        ImageIcon imagem = new ImageIcon(getClass().getResource(a));
+        lblFundos.setIcon(new ImageIcon(imagem.getImage().getScaledInstance(lblFundos.getWidth(),lblFundos.getHeight(), Image.SCALE_SMOOTH)));
+   
+   }
+   public void fechar(){
+        int a = JOptionPane.showConfirmDialog(null,"Deseja sair","Saida",JOptionPane.YES_NO_OPTION);
+        if(a== JOptionPane.YES_OPTION){
+            System.exit(0);
+        }else{
+            repaint();
+        }
+   }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConect;
