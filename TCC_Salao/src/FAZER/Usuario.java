@@ -282,7 +282,7 @@ public class Usuario extends javax.swing.JInternalFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(600, 350, 90, 23);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO", "SOLTEIRA", "CASADO", "CASADA", "DIVORCIADO", "DIVORCIADA", "VIUVO", "VIUVA" }));
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(20, 210, 110, 20);
 
