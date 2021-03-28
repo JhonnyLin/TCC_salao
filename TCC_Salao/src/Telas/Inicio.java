@@ -195,6 +195,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu6.add(jMenuItem11);
 
         jMenuItem22.setText("Pedidos");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem22);
 
         MenuBar.add(jMenu6);
@@ -361,6 +366,10 @@ public class Inicio extends javax.swing.JFrame {
         config.telaDialog("Buscar Fornecedor", fornecedor);
         
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

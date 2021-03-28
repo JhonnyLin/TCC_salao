@@ -1,0 +1,26 @@
+CREATE TABLE `salao_bd`.`agendamento` (
+  `id_agendamento` INT NOT NULL AUTO_INCREMENT,
+  `id_cliente` INT NULL,
+  `dt_agendamento` DATE NULL,
+  `hr_atendimento` TIME NULL,
+  `ds_adendamento` VARCHAR(45) NULL,
+  PRIMARY KEY (`id_agendamento`));
+/////////////////////////////////////////////////////
+CREATE TABLE `salao_bd`.`usuario` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nm_usuario` VARCHAR(45) NULL,
+  `cd_CPF` VARCHAR(14) NULL,
+  `cd_RG` VARCHAR(12) NULL,
+  `cd_telefone` VARCHAR(14) NULL,
+  `dt_nascimeno` VARCHAR(10) NULL,
+  `ds_email` VARCHAR(40) NULL,
+  `ds_endereco` VARCHAR(100) NULL,
+  PRIMARY KEY (`id_usuario`));
+/////////////////////////////////////////////////////
+CREATE TABLE `salao_bd`.`movimento` (
+  `id_movimento` INT NOT NULL AUTO_INCREMENT,
+  `id_usuario` INT NULL,
+  `id_tipo_movimento` INT NULL,
+  `vl_movimento` DECIMAL(6) NULL,
+  PRIMARY KEY (`id_movimento`));
+/////////////////////////////////////////////////////

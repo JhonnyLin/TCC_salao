@@ -24,6 +24,7 @@ public class Cliente extends javax.swing.JDialog {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblIcon = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,6 +46,8 @@ public class Cliente extends javax.swing.JDialog {
         btnPesqTel = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(570, 500));
@@ -424,6 +427,7 @@ public class Cliente extends javax.swing.JDialog {
     private javax.swing.JButton btnPesqNome;
     private javax.swing.JButton btnPesqTel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

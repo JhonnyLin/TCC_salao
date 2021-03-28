@@ -13,7 +13,7 @@ public class Configuracao {
         frame.setTitle(titulo);
         frame.setVisible(true);
     }
-    //VEr questão da interface
+      //VEr questão da interface
 //    public void telaDialog(String titulo, JInternalFrame internal) {
 //        Inicio ini = new Inicio();
 //        ini.add(internal);
