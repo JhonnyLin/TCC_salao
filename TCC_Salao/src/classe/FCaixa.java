@@ -486,7 +486,7 @@ public class FCaixa extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        config.telaDialog("Cliente", c);
+        config.tela("Cliente", c);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void txtNmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmClienteActionPerformed
@@ -610,7 +610,7 @@ public class FCaixa extends javax.swing.JInternalFrame {
         }else{
             bsp.configServico();
         }
-        config.telaDialog("Bucar Serviço ou Produto", bsp);
+        config.tela("Bucar Serviço ou Produto", bsp);
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
     //minhas clases

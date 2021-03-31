@@ -116,7 +116,7 @@ public class AbrirCaixa extends javax.swing.JDialog {
             if(valor().equals(inicializacao.getValorInicio())){
                 JOptionPane.showMessageDialog(null, "Caixa aberto");
                 //interface
-                config.telaDialog("Frente de Caixa", frm);
+                config.tela("Frente de Caixa", frm);
                 limp.limpezaCampo(mscValor);
                 this.dispose();
             }  

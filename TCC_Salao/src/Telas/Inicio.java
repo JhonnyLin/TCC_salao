@@ -17,8 +17,11 @@ public class Inicio extends javax.swing.JFrame {
     BuscaSP buscaSP = new BuscaSP(null, true);
     Cliente cliente = new Cliente(null, true);
     Fornecedor fornecedor = new Fornecedor(null, true);
+    Pedidos pedido = new Pedidos(); 
     ConexaoBD conexao = new ConexaoBD();
-    
+    Usuario usuario = new Usuario();
+    Agendamento agendamento = new Agendamento();
+    Abertos abertos = new Abertos();
     
     
     
@@ -92,9 +95,19 @@ public class Inicio extends javax.swing.JFrame {
         jMenu9.setText("Agenda");
 
         jMenuItem13.setText("Agendar");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem13);
 
         jMenuItem23.setText("Consultar");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
         jMenu9.add(jMenuItem23);
 
         MenuBar.add(jMenu9);
@@ -169,6 +182,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu8.add(jMenuItem20);
 
         jMenuItem21.setText("Fiados");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem21);
 
         MenuBar.add(jMenu8);
@@ -295,7 +313,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        config.tela("Usuarios",abertos,desktop);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -312,17 +330,17 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         buscaSP.configPruduto();
-        config.telaDialog("Bucar Serviço ou Produto", buscaSP);
+        config.tela("Bucar Serviço ou Produto", buscaSP);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         servProd.inicializa(true);
-        config.telaDialog("Cadastrar Serviço ou Produto", servProd);
+        config.tela("Cadastrar Serviço ou Produto", servProd);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         buscaSP.configServico();
-        config.telaDialog("Bucar Serviço ou Produto", buscaSP);
+        config.tela("Bucar Serviço ou Produto", buscaSP);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -330,46 +348,60 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
-       config.telaDialog("Abrir Caixa", abrirCX);
+       config.tela("Abrir Caixa", abrirCX);
     }//GEN-LAST:event_AbrirActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-       config.telaDialog("Fechar Caixa", abrirCX);
+       config.tela("Fechar Caixa", abrirCX);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-       config.telaDialog("Retirada", abrirCX);
+       config.tela("Retirada", abrirCX);
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         cliente.inicializar(false);
-        config.telaDialog("Cadastrar Cliente", cliente);        
+        config.tela("Cadastrar Cliente", cliente);        
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         cliente.inicializar(true);
-        config.telaDialog("Buscar Cliente", cliente);
+        config.tela("Buscar Cliente", cliente);
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         servProd.inicializa(false);
-        config.telaDialog("Cadastrar Serviço ou Produto", servProd);
+        config.tela("Cadastrar Serviço ou Produto", servProd);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         fornecedor.inicializar(false);
-        config.telaDialog("Cadastrar Fornecedor", fornecedor);
+        config.tela("Cadastrar Fornecedor", fornecedor);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         fornecedor.inicializar(true);
-        config.telaDialog("Buscar Fornecedor", fornecedor);
+        config.tela("Buscar Fornecedor", fornecedor);
         
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-        // TODO add your handling code here:
+       config.tela("Pedidos",pedido, desktop);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        config.tela("Agendamento",agendamento, desktop);
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        abertos.inicializador(1);
+        config.tela("Agendados",abertos, desktop);
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        abertos.inicializador(2);
+        config.tela("Abertos",abertos, desktop);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

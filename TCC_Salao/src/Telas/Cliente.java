@@ -51,9 +51,9 @@ public class Cliente extends javax.swing.JDialog {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(567, 450));
-        setMinimumSize(new java.awt.Dimension(567, 450));
-        setPreferredSize(new java.awt.Dimension(567, 450));
+        setMaximumSize(new java.awt.Dimension(600, 485));
+        setMinimumSize(new java.awt.Dimension(600, 485));
+        setPreferredSize(new java.awt.Dimension(600, 485));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -177,7 +177,7 @@ public class Cliente extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(450, 390, 90, 30);
+        btnCancelar.setBounds(410, 390, 130, 30);
 
         btnEnviar.setText("Enviar");
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +186,7 @@ public class Cliente extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnEnviar);
-        btnEnviar.setBounds(310, 390, 90, 30);
+        btnEnviar.setBounds(220, 390, 130, 30);
 
         btnCancelar1.setText("Historico");
         btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +195,7 @@ public class Cliente extends javax.swing.JDialog {
             }
         });
         getContentPane().add(btnCancelar1);
-        btnCancelar1.setBounds(170, 390, 90, 30);
+        btnCancelar1.setBounds(40, 390, 130, 30);
 
         pack();
         setLocationRelativeTo(null);
@@ -254,7 +254,7 @@ public class Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     /**

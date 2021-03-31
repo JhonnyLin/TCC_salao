@@ -14,9 +14,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
         initComponents();
         //setExtendedState(MAXIMIZED_BOTH);
         inserirImg();
-        
-        txtNmCliente.setEnabled(false);
-        txtCdCliente.setEnabled(false);
         txtTotais.setEnabled(false);
         rbtServicoActionPerformed(null);
         ConexaoBD.connect();
@@ -44,9 +41,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         gbnSP = new javax.swing.ButtonGroup();
         btnPerfil = new javax.swing.JButton();
-        txtNmCliente = new javax.swing.JTextField();
-        txtCdCliente = new javax.swing.JTextField();
-        lblNome = new javax.swing.JLabel();
+        lblSetNome = new javax.swing.JLabel();
         lblCod = new javax.swing.JLabel();
         pnlMenuSP = new javax.swing.JPanel();
         btnRapido7 = new javax.swing.JButton();
@@ -79,6 +74,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
         txtTotais = new javax.swing.JTextField();
         btnPagar = new javax.swing.JButton();
         lblInfSistema = new javax.swing.JLabel();
+        lblNome1 = new javax.swing.JLabel();
+        lblSetCodigo = new javax.swing.JLabel();
         bmnFrente = new javax.swing.JMenuBar();
 
         jMenu4.setText("File");
@@ -89,30 +86,26 @@ public class FrenteCaixa extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
+        setMinimumSize(new java.awt.Dimension(984, 680));
         setResizable(false);
         setSize(new java.awt.Dimension(1500, 700));
+        getContentPane().setLayout(null);
 
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerfilActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPerfil);
+        btnPerfil.setBounds(23, 29, 95, 101);
 
-        txtNmCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNmClienteActionPerformed(evt);
-            }
-        });
+        lblSetNome.setText("xxxxxxx xxxxxxx xxxxxx");
+        getContentPane().add(lblSetNome);
+        lblSetNome.setBounds(130, 100, 240, 20);
 
-        txtCdCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCdClienteActionPerformed(evt);
-            }
-        });
-
-        lblNome.setText("Nome:");
-
-        lblCod.setText("Codigo:");
+        lblCod.setText("Nome:");
+        getContentPane().add(lblCod);
+        lblCod.setBounds(124, 77, 80, 20);
 
         pnlMenuSP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -343,6 +336,9 @@ public class FrenteCaixa extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        getContentPane().add(pnlMenuSP);
+        pnlMenuSP.setBounds(10, 170, 438, 457);
+
         PnlTabela.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
@@ -359,14 +355,17 @@ public class FrenteCaixa extends javax.swing.JFrame {
         PnlTabela.setLayout(PnlTabelaLayout);
         PnlTabelaLayout.setHorizontalGroup(
             PnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
         PnlTabelaLayout.setVerticalGroup(
             PnlTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlTabelaLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(PnlTabelaLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        getContentPane().add(PnlTabela);
+        PnlTabela.setBounds(480, 30, 480, 454);
 
         gbnSP.add(rbtServico);
         rbtServico.setSelected(true);
@@ -376,6 +375,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
                 rbtServicoActionPerformed(evt);
             }
         });
+        getContentPane().add(rbtServico);
+        rbtServico.setBounds(23, 148, 100, 23);
 
         gbnSP.add(rbtProdutos);
         rbtProdutos.setText("Produtos");
@@ -384,15 +385,23 @@ public class FrenteCaixa extends javax.swing.JFrame {
                 rbtProdutosActionPerformed(evt);
             }
         });
+        getContentPane().add(rbtProdutos);
+        rbtProdutos.setBounds(142, 148, 120, 23);
 
         btnPesquisaSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisaSPActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPesquisaSP);
+        btnPesquisaSP.setBounds(400, 120, 50, 40);
 
         lblTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTotal.setText("Total");
+        getContentPane().add(lblTotal);
+        lblTotal.setBounds(478, 502, 137, 38);
+        getContentPane().add(txtTotais);
+        txtTotais.setBounds(810, 500, 154, 38);
 
         btnPagar.setText("PAGAR");
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
@@ -400,109 +409,25 @@ public class FrenteCaixa extends javax.swing.JFrame {
                 btnPagarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPagar);
+        btnPagar.setBounds(630, 550, 180, 63);
 
         lblInfSistema.setText("info do sistema");
-        setJMenuBar(bmnFrente);
+        getContentPane().add(lblInfSistema);
+        lblInfSistema.setBounds(840, 630, 140, 14);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNome)
-                                    .addComponent(txtNmCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCod, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(rbtServico)
-                                .addGap(54, 54, 54)
-                                .addComponent(rbtProdutos)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnPesquisaSP)
-                            .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(PnlTabela, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(38, 38, 38))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblInfSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PnlTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(btnPesquisaSP)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtTotais, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblInfSistema)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblNome)
-                                        .addGap(8, 8, 8)
-                                        .addComponent(txtNmCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblCod)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(rbtServico)
-                                    .addComponent(rbtProdutos))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pnlMenuSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        lblNome1.setText("Codigo:");
+        getContentPane().add(lblNome1);
+        lblNome1.setBounds(124, 29, 80, 20);
+
+        lblSetCodigo.setText("0000000");
+        getContentPane().add(lblSetCodigo);
+        lblSetCodigo.setBounds(130, 50, 240, 20);
+        setJMenuBar(bmnFrente);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNmClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNmClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNmClienteActionPerformed
-
-    private void txtCdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCdClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCdClienteActionPerformed
 
     private void btnRapido3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido3ActionPerformed
         criarTabela.confgTabela("3", txtTotais);
@@ -510,7 +435,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         c.inicializar(true);
-        config.telaDialog("Cliente", c);
+        config.tela("Cliente", c);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
@@ -521,7 +446,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
             //System.out.println(txtTotais.getText());            
             p.setValor(txtTotais.getText());            
             p.configinicializacao();
-            config.telaDialog("Pagamento", p);
+            config.tela("Pagamento", p);
             criarTabela.limparTabela(tblCarrinho, nomes, txtTotais);
         }
     
@@ -538,7 +463,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
        }else{
            bsp.configServico();
        }
-       config.telaDialog("Bucar Serviço ou Produto", bsp);
+       config.tela("Bucar Serviço ou Produto", bsp);
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
     private void rbtServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtServicoActionPerformed
@@ -772,8 +697,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }
     
     public void setCliente(String nome, String cod){
-        this.txtCdCliente.setText(cod);
-        this.txtNmCliente.setText(nome);
+        this.lblSetCodigo.setText(cod);
+        this.lblSetNome.setText(nome);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -809,14 +734,14 @@ public class FrenteCaixa extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCod;
     private javax.swing.JLabel lblInfSistema;
-    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNome1;
+    private javax.swing.JLabel lblSetCodigo;
+    private javax.swing.JLabel lblSetNome;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlMenuSP;
     private javax.swing.JRadioButton rbtProdutos;
     private javax.swing.JRadioButton rbtServico;
     private javax.swing.JTable tblCarrinho;
-    public javax.swing.JTextField txtCdCliente;
-    public javax.swing.JTextField txtNmCliente;
     private javax.swing.JTextField txtTotais;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,4 +1,4 @@
-package FAZER;
+package Telas;
 
 public class Usuario extends javax.swing.JInternalFrame {
 
@@ -55,14 +55,16 @@ public class Usuario extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jTextField18 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
-        setMinimumSize(new java.awt.Dimension(723, 500));
-        setPreferredSize(new java.awt.Dimension(723, 500));
+        setClosable(true);
+        setMaximumSize(new java.awt.Dimension(723, 426));
+        setMinimumSize(new java.awt.Dimension(723, 426));
+        setPreferredSize(new java.awt.Dimension(723, 426));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -89,7 +91,7 @@ public class Usuario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(rbtFeminino);
-        rbtFeminino.setBounds(20, 260, 67, 23);
+        rbtFeminino.setBounds(20, 260, 120, 23);
 
         buttonGroup1.add(rbtMasculino);
         rbtMasculino.setText("Masculino");
@@ -99,11 +101,11 @@ public class Usuario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(rbtMasculino);
-        rbtMasculino.setBounds(20, 290, 71, 23);
+        rbtMasculino.setBounds(20, 290, 130, 23);
 
         jLabel1.setText("RG:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(440, 110, 80, 20);
+        jLabel1.setBounds(440, 120, 80, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,31 +113,31 @@ public class Usuario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(160, 80, 340, 20);
+        jTextField1.setBounds(160, 90, 340, 30);
 
         jLabel2.setText("Data Nascimento:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(520, 60, 110, 20);
+        jLabel2.setBounds(520, 70, 130, 20);
         getContentPane().add(jTextField2);
-        jTextField2.setBounds(160, 180, 340, 20);
+        jTextField2.setBounds(160, 190, 340, 30);
 
         jLabel3.setText("Nome completo:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(160, 60, 80, 20);
+        jLabel3.setBounds(160, 70, 200, 20);
 
         jLabel4.setText("CPF:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(160, 110, 80, 20);
+        jLabel4.setBounds(160, 120, 80, 20);
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(520, 80, 170, 20);
+        jTextField3.setBounds(520, 90, 170, 30);
         getContentPane().add(jTextField4);
-        jTextField4.setBounds(160, 130, 260, 20);
+        jTextField4.setBounds(160, 140, 260, 30);
 
         jLabel5.setText("Email:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(160, 160, 80, 20);
+        jLabel5.setBounds(160, 170, 80, 20);
         getContentPane().add(jTextField5);
-        jTextField5.setBounds(440, 130, 250, 20);
+        jTextField5.setBounds(440, 140, 250, 30);
 
         jInternalFrame1.setMinimumSize(new java.awt.Dimension(723, 500));
         jInternalFrame1.setPreferredSize(new java.awt.Dimension(723, 500));
@@ -219,15 +221,15 @@ public class Usuario extends javax.swing.JInternalFrame {
         getContentPane().add(jInternalFrame1);
         jInternalFrame1.setBounds(0, 0, 723, 500);
         getContentPane().add(jTextField11);
-        jTextField11.setBounds(520, 180, 170, 20);
+        jTextField11.setBounds(520, 190, 170, 30);
 
         jLabel11.setText("Telefone:");
         getContentPane().add(jLabel11);
-        jLabel11.setBounds(520, 160, 110, 20);
+        jLabel11.setBounds(520, 170, 110, 20);
 
         jLabel12.setText("Numero:");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(500, 260, 70, 20);
+        jLabel12.setBounds(500, 270, 70, 20);
 
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,64 +237,64 @@ public class Usuario extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jTextField12);
-        jTextField12.setBounds(160, 280, 320, 20);
+        jTextField12.setBounds(160, 290, 320, 30);
         getContentPane().add(jTextField13);
-        jTextField13.setBounds(160, 230, 120, 20);
+        jTextField13.setBounds(160, 240, 120, 30);
 
         jLabel13.setText("Bairro:");
         getContentPane().add(jLabel13);
-        jLabel13.setBounds(300, 210, 70, 20);
+        jLabel13.setBounds(300, 220, 70, 20);
 
         jLabel14.setText("Estado Civil:");
         getContentPane().add(jLabel14);
         jLabel14.setBounds(20, 190, 90, 20);
         getContentPane().add(jTextField14);
-        jTextField14.setBounds(300, 230, 180, 20);
+        jTextField14.setBounds(300, 240, 180, 30);
 
         jLabel15.setText("Cidade:");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(500, 210, 50, 20);
+        jLabel15.setBounds(500, 220, 50, 20);
         getContentPane().add(jTextField15);
-        jTextField15.setBounds(500, 280, 80, 20);
+        jTextField15.setBounds(500, 290, 80, 30);
         getContentPane().add(jTextField16);
-        jTextField16.setBounds(500, 230, 190, 20);
+        jTextField16.setBounds(500, 240, 190, 30);
         getContentPane().add(jTextField17);
-        jTextField17.setBounds(610, 280, 80, 20);
+        jTextField17.setBounds(600, 290, 90, 30);
 
         jLabel17.setText("Complemento:");
         getContentPane().add(jLabel17);
-        jLabel17.setBounds(610, 260, 90, 20);
+        jLabel17.setBounds(600, 270, 90, 20);
 
         jLabel18.setText("Cod:");
         getContentPane().add(jLabel18);
         jLabel18.setBounds(160, 20, 50, 20);
         getContentPane().add(jTextField18);
-        jTextField18.setBounds(160, 40, 100, 20);
+        jTextField18.setBounds(160, 40, 100, 30);
 
         jButton1.setText("Salvar");
         getContentPane().add(jButton1);
-        jButton1.setBounds(490, 350, 90, 23);
+        jButton1.setBounds(490, 350, 90, 30);
 
-        jButton2.setText("Cancelar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(600, 350, 90, 23);
+        getContentPane().add(btnCancelar);
+        btnCancelar.setBounds(600, 350, 90, 30);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO", "SOLTEIRA", "CASADO", "CASADA", "DIVORCIADO", "DIVORCIADA", "VIUVO", "VIUVA" }));
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(20, 210, 110, 20);
+        jComboBox1.setBounds(20, 210, 110, 30);
 
         jLabel20.setText("CEP:");
         getContentPane().add(jLabel20);
-        jLabel20.setBounds(160, 210, 50, 20);
+        jLabel20.setBounds(160, 220, 50, 20);
 
         jLabel21.setText("Rua:");
         getContentPane().add(jLabel21);
-        jLabel21.setBounds(160, 260, 50, 20);
+        jLabel21.setBounds(160, 270, 50, 20);
 
         jLabel16.setText("Sexo:");
         getContentPane().add(jLabel16);
@@ -329,15 +331,15 @@ public class Usuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField12ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
