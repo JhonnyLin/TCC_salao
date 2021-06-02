@@ -1,8 +1,8 @@
 package Telas;
 
 import ClasseBD.ConexaoBD;
-import classe.Configuracao;
-import classe.Imagens;
+import classe.genericas.Configuracao;
+import classe.genericas.Imagens;
 import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;

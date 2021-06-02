@@ -1,7 +1,7 @@
 package Telas;
 
 import ClasseBD.ConexaoBD;
-import classe.Imagens;
+import classe.genericas.Imagens;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;

@@ -1,5 +1,8 @@
 package Telas;
 
+import Enum.EstadoCivil;
+import javax.swing.DefaultComboBoxModel;
+
 public class Usuario extends javax.swing.JInternalFrame {
 
     public Usuario() {
@@ -284,7 +287,11 @@ public class Usuario extends javax.swing.JInternalFrame {
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(600, 350, 90, 30);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOLTEIRO", "SOLTEIRA", "CASADO", "CASADA", "DIVORCIADO", "DIVORCIADA", "VIUVO", "VIUVA" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nenhum(evt);
+            }
+        });
         getContentPane().add(jComboBox1);
         jComboBox1.setBounds(20, 210, 110, 30);
 
@@ -335,12 +342,18 @@ public class Usuario extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void nenhum(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nenhum
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nenhum
+    public void combo1(){
+        jComboBox1.setModel(new DefaultComboBoxModel<>(EstadoCivil.values()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Enum> jComboBox1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

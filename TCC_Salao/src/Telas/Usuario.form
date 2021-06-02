@@ -511,20 +511,14 @@
     <Component class="javax.swing.JComboBox" name="jComboBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="8">
-            <StringItem index="0" value="SOLTEIRO"/>
-            <StringItem index="1" value="SOLTEIRA"/>
-            <StringItem index="2" value="CASADO"/>
-            <StringItem index="3" value="CASADA"/>
-            <StringItem index="4" value="DIVORCIADO"/>
-            <StringItem index="5" value="DIVORCIADA"/>
-            <StringItem index="6" value="VIUVO"/>
-            <StringItem index="7" value="VIUVA"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nenhum"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Enum&gt;"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

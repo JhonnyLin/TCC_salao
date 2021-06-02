@@ -1,5 +1,7 @@
 package Telas;
 
+import classe.genericas.Tabela;
+import classe.genericas.Imagens;
 import classe.*;
 import javax.swing.JButton;
 

@@ -1,8 +1,8 @@
 package Telas;
 
-import classe.Configuracao;
-import classe.Inicializacao;
-import classe.Limpeza;
+import classe.genericas.Configuracao;
+import classe.negocios.Inicializacao;
+import classe.genericas.Limpeza;
 import javax.swing.JOptionPane;
 
 public class AbrirCaixa extends javax.swing.JDialog {

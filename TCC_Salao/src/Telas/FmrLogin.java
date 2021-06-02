@@ -1,7 +1,7 @@
 package Telas;
 
 
-import classe.Imagens;
+import classe.genericas.Imagens;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;

@@ -1,14 +1,14 @@
 package Telas;
 
 import ClasseBD.ConexaoBD;
-import classe.Configuracao;
+import classe.genericas.Configuracao;
 
 public class Inicio extends javax.swing.JFrame {
     
     public Inicio() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        conexao.connect();
+//        conexao.connect();
     }
     //Chamadas (verificar se melhor usar uma inteface)
     Configuracao config = new Configuracao();
@@ -22,7 +22,9 @@ public class Inicio extends javax.swing.JFrame {
     Usuario usuario = new Usuario();
     Agendamento agendamento = new Agendamento();
     Abertos abertos = new Abertos();
-    
+    AbertoAgendamento openAgend = new AbertoAgendamento();
+    AbertoUser openUser = new AbertoUser();
+    AbertoCliente openCli = new AbertoCliente();
     
     
     @SuppressWarnings("unchecked")
@@ -313,7 +315,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        config.tela("Usuarios",abertos,desktop);
+        config.tela("Usuarios",openUser,desktop);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -344,7 +346,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        config.tela("Clientes",openCli, desktop);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
@@ -395,7 +397,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         abertos.inicializador(1);
-        config.tela("Agendados",abertos, desktop);
+      //  config.tela("Agendados",op, desktop);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed

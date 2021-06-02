@@ -1,4 +1,4 @@
-package classe;
+package classe.genericas;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

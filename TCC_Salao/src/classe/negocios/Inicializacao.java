@@ -1,4 +1,4 @@
-package classe;
+package classe.negocios;
 
 public class Inicializacao {
     private String atendente = "";

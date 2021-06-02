@@ -1,8 +1,8 @@
 package Telas;
 
 import ClasseBD.ConexaoBD;
-import classe.Configuracao;
-import classe.Imagens;
+import classe.genericas.Configuracao;
+import classe.genericas.Imagens;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -340,10 +340,14 @@ public class Fornecedor extends javax.swing.JDialog {
         if(psq){
             txtEmaiFornecedor.setEnabled(false);
             atxEndFornecedor.setEnabled(false);
+            btnEnviar.setText("Novo orçamento");
+            btnEnviar.setEnabled(false);
             this.setTitle("Buscar Fornecedor");
         }else{
             txtEmaiFornecedor.setEnabled(true);
             atxEndFornecedor.setEnabled(true);
+            btnEnviar.setText("Confirmar");
+            btnEnviar.setEnabled(true);
             this.setTitle("Cadastrar Fornecedor");
         }        
     }

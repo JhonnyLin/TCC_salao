@@ -1,10 +1,10 @@
 package Telas;
 
 import javax.swing.JButton;
-import classe.Imagens;
+import classe.genericas.Imagens;
 import ClasseBD.ConexaoBD;
-import classe.Configuracao;
-import classe.Tabela;
+import classe.genericas.Configuracao;
+import classe.genericas.Tabela;
 import javax.swing.JOptionPane;
 
 //fazer uma classe só pra chamadas

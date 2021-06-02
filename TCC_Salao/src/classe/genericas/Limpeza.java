@@ -1,4 +1,4 @@
-package classe;
+package classe.genericas;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextArea;

@@ -1,4 +1,4 @@
-package classe;
+package classe.genericas;
 
 import ClasseBD.ConexaoBD;
 import java.sql.ResultSet;
