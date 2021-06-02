@@ -436,6 +436,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         c.inicializar(true);
         config.tela("Cliente", c);
+        lblSetCodigo.setText(c.cliente.getCod());
+        lblSetNome.setText(c.cliente.getNome());
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed

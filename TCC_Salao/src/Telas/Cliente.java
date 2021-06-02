@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
 public class Cliente extends javax.swing.JDialog {
 
@@ -18,6 +17,8 @@ public class Cliente extends javax.swing.JDialog {
     }
     Imagens imge = new Imagens();
     String texto;
+    classe.objetos.Cliente cliente;
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -248,13 +249,21 @@ public class Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        String query = inserirCli();
-        inicializar(true);ConexaoBD.executar(query);
-        JOptionPane.showMessageDialog(null, "Inserindo no banco.");
+       // SE for cadastro
+        // if(true){
+            cliente.inserirCli();
+        //}else{
+            
+        //}
+
+          
+//        inicializar(true);ConexaoBD.executar(query);
+//        JOptionPane.showMessageDialog(null, "Inserindo no banco.");
+        
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        
+    cliente.existe();
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     /**
@@ -298,20 +307,23 @@ public class Cliente extends javax.swing.JDialog {
             }
         });
     }
+    //passar pra classe
     public void InserirCliente(ResultSet rs ) throws SQLException{
         while(rs.next()){
-            txtCodCliente.setText(rs.getString(1));
-            txtNmCliente.setText(rs.getString(2));
-            mcrTelClente.setText(rs.getString(3));
-            txtEmaiCliente.setText(rs.getString(4));
-            atxEndCliente.setText(rs.getString(5));
-            if(rs.getString(6).equals("0")){
+            cliente = new classe.objetos.Cliente( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5), rs.getString(6));
+            txtCodCliente.setText(cliente.getCod());
+            txtNmCliente.setText(cliente.getNome());
+            mcrTelClente.setText(cliente.getTelefone());
+            txtEmaiCliente.setText(cliente.getEmail());
+            atxEndCliente.setText(cliente.getEndereco());
+            if(cliente.getFeminino().equals("0")){
                 rbtMasculino.setSelected(true);
                 rbtMasculinoActionPerformed(null);
             }else{
                 rbtFeminino.setSelected(true);
                 rbtFemininoActionPerformed(null);
             }
+            
         }
     }
     
@@ -320,26 +332,27 @@ public class Cliente extends javax.swing.JDialog {
         String query = q+campo+"= '"+texto+"'";
         return query;
     }
+//    
+//    //quary pronta
+//    public String inserirCli(){
+//        //definindo a tabela e os campos para inserir
+//        String q = "INSERT INTO cliente(nm_Cliente,cd_Telefone,ds_Email,ds_Endereco,bl_Sexo_F) ";
+//        //declaração dos campos
+//        String nm_Cliente, cd_Telefone, ds_Email, ds_Endereco;
+//        Boolean bl_Sexo_F;
+//        //pegando o valor das caixas de texto
+//        nm_Cliente = txtNmCliente.getText();
+//        cd_Telefone = mcrTelClente.getText();
+//        ds_Email= txtEmaiCliente.getText();
+//        ds_Endereco = atxEndCliente.getText();
+//        bl_Sexo_F = rbtFeminino.isSelected();
+//        //colocando as variaveis na quary
+//        String a = "VALUES('"+ nm_Cliente +"','"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"',"+ bl_Sexo_F+")";
+//        //teste
+//        System.out.println(q+a);
+//        return q+a;
+//    }
     
-    //quary pronta
-    public String inserirCli(){
-        //definindo a tabela e os campos para inserir
-        String q = "INSERT INTO cliente(nm_Cliente,cd_Telefone,ds_Email,ds_Endereco,bl_Sexo_F) ";
-        //declaração dos campos
-        String nm_Cliente, cd_Telefone, ds_Email, ds_Endereco;
-        Boolean bl_Sexo_F;
-        //pegando o valor das caixas de texto
-        nm_Cliente = txtNmCliente.getText();
-        cd_Telefone = mcrTelClente.getText();
-        ds_Email= txtEmaiCliente.getText();
-        ds_Endereco = atxEndCliente.getText();
-        bl_Sexo_F = rbtFeminino.isSelected();
-        //colocando as variaveis na quary
-        String a = "VALUES('"+ nm_Cliente +"','"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"',"+ bl_Sexo_F+")";
-        //teste
-        System.out.println(q+a);
-        return q+a;
-    }
     //habilitando campos de acordo com a ação do usuario
     public void inicializar(boolean psq){
         btnAdd.setVisible(psq);
