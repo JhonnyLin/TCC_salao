@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Agenda {
     //agrupamentos
@@ -24,7 +25,10 @@ public class Agenda {
         this.cliente = new ArrayList<Cliente>();
         this.agenda = new ArrayList<Agendamento>();
     }
+      
     
+    ///////////////////////////////EXP///////////////////////////////
+    //Set arrays
     public boolean agendamento(String data){
        classe.objetos.Agendamento agend;
        String query = pesquisaBD(data,"cliente","idcliente");
@@ -68,7 +72,19 @@ public class Agenda {
         }
         return false;
     }
-      
+    
+    public boolean exluir(int idList){
+        //colocar dados na tela
+        //JOptionPane.showConfirmDialog(parentComponent, this);
+        //if(){ confirmação
+            agenda.get(idList).excluirBD();//depois metodo pra verificar se foi excluido
+            agenda.remove(idList);
+            cliente.get(idList).excluirBD();
+            cliente.remove(idList);
+        //}
+        return false;
+    }
+    ///////////////////////////////C\BD//////////////////////////////
     public String pesquisaBD(String texto, String tabela, String campo){
         String q = "SELECT * FROM"+ tabela +"WHERE  ";
         String query = q+campo+"= '"+texto+"'";

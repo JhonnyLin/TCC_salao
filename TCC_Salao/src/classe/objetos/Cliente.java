@@ -75,11 +75,11 @@ public class Cliente {
         return false;
     }
     //atualizar bd
-    public boolean atualizar(){
+    public boolean atualizarBD(){
         return false;
     }
     //inserir bd
-    public boolean inserir(){
+    public boolean inserirBD(){
         //se existir
         if(existe()){
             //colocar nome e telefone  pra vconfirmar ou não a criação
@@ -89,7 +89,7 @@ public class Cliente {
     }
     
     //excluir bd
-    public boolean excluir(){
+    public boolean excluirBD(){
         return false;
     }
 }

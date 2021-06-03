@@ -59,17 +59,17 @@ public class Agendamento {
     ///////////////////////////////C\BD//////////////////////////////
     ///////////////////////////só mandar parametros//////////////////
     //inserir
-    public boolean inserir() {
+    public boolean inserirBD() {
         return false;
     }
 
     //alterar
-    public boolean alterar() {
+    public boolean alterarBD() {
         return false;
     }
 
     //excluir
-    public boolean excluir() {
+    public boolean excluirBD() {
         return false;
     }
 }
