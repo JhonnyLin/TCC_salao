@@ -1,14 +1,16 @@
 package Telas;
 
+import classe.genericas.Configuracao;
+import java.sql.SQLException;
+
 public class AbertoAgendamento extends javax.swing.JInternalFrame {
 
-    public AbertoAgendamento() {
-        System.out.println(title);
+    public AbertoAgendamento(){
         initComponents();
-        System.out.println(title);
-        System.out.println(title);        
+        //classe.negocios.Agenda agenda = new classe.negocios.Agenda();
     }
-
+    Configuracao config = new Configuracao();
+    Agendamento agendamento = new Agendamento(null, true);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -16,12 +18,14 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnCancelar = new javax.swing.JButton();
+        btnAgendar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblSubTitulo = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
         pnlData = new javax.swing.JPanel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        btnCancelar1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -54,18 +58,20 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(20, 39, 490, 390);
 
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnAgendar.setText("Novo");
+        btnAgendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnAgendarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar);
-        btnCancelar.setBounds(530, 400, 110, 31);
+        getContentPane().add(btnAgendar);
+        btnAgendar.setBounds(530, 320, 110, 31);
 
         jLabel1.setText("Filtro:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(450, 10, 60, 20);
+
+        lblSubTitulo.setText("7 dias");
         getContentPane().add(lblSubTitulo);
         lblSubTitulo.setBounds(90, 10, 250, 20);
 
@@ -93,17 +99,45 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
         getContentPane().add(pnlData);
         pnlData.setBounds(520, 0, 140, 40);
 
+        btnCancelar1.setText("Cancelar");
+        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancelar1);
+        btnCancelar1.setBounds(530, 400, 110, 31);
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir);
+        btnExcluir.setBounds(530, 360, 110, 31);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
+        config.tela("Abrir Caixa", agendamento);
+        
+    }//GEN-LAST:event_btnAgendarActionPerformed
 
-   
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+        dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+       
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnAgendar;
+    private javax.swing.JButton btnCancelar1;
+    private javax.swing.JButton btnExcluir;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -1,6 +1,6 @@
 package Telas;
 
-import Enum.EstadoCivil;
+import lixo.EstadoCivil;
 import javax.swing.DefaultComboBoxModel;
 
 public class Usuario extends javax.swing.JInternalFrame {

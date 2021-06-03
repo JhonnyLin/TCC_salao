@@ -1,11 +1,14 @@
 package Telas;
 
+import lixo.Agendamento;
 import ClasseBD.ConexaoBD;
 import classe.genericas.Configuracao;
+import java.sql.SQLException;
 
 public class Inicio extends javax.swing.JFrame {
     
-    public Inicio() {
+    public Inicio(){
+
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
 //        conexao.connect();
@@ -25,6 +28,7 @@ public class Inicio extends javax.swing.JFrame {
     AbertoAgendamento openAgend = new AbertoAgendamento();
     AbertoUser openUser = new AbertoUser();
     AbertoCliente openCli = new AbertoCliente();
+    //        this.openAgend =
     
     
     @SuppressWarnings("unchecked")
@@ -37,7 +41,6 @@ public class Inicio extends javax.swing.JFrame {
         MenuBar = new javax.swing.JMenuBar();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem23 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         Abrir = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
@@ -96,21 +99,13 @@ public class Inicio extends javax.swing.JFrame {
 
         jMenu9.setText("Agenda");
 
-        jMenuItem13.setText("Agendar");
+        jMenuItem13.setText("Consultar");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
             }
         });
         jMenu9.add(jMenuItem13);
-
-        jMenuItem23.setText("Consultar");
-        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem23ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem23);
 
         MenuBar.add(jMenu9);
 
@@ -392,13 +387,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        config.tela("Agendamento",agendamento, desktop);
+        config.tela("Agenda",openAgend,desktop);     
     }//GEN-LAST:event_jMenuItem13ActionPerformed
-
-    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
-        abertos.inicializador(1);
-      //  config.tela("Agendados",op, desktop);
-    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         abertos.inicializador(2);
@@ -465,7 +455,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
-    private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
