@@ -1,7 +1,6 @@
 package Telas;
 
 import classe.genericas.Configuracao;
-import java.sql.SQLException;
 
 public class AbertoAgendamento extends javax.swing.JInternalFrame {
 
@@ -10,6 +9,7 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
         //classe.negocios.Agenda agenda = new classe.negocios.Agenda();
     }
     Configuracao config = new Configuracao();
+    classe.negocios.Agenda agenda = new classe.negocios.Agenda();
     Agendamento agendamento = new Agendamento(null, true);
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -17,7 +17,7 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblAgenda = new javax.swing.JTable();
         btnAgendar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblSubTitulo = new javax.swing.JLabel();
@@ -45,7 +45,7 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(675, 479));
         getContentPane().setLayout(null);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblAgenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -53,7 +53,7 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblAgenda);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(20, 39, 490, 390);
@@ -130,7 +130,8 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-       
+        //passar indice pro excluir do agenda
+        agenda.exluirBD(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 
@@ -142,9 +143,9 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSubTitulo;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlData;
+    private javax.swing.JTable tblAgenda;
     // End of variables declaration//GEN-END:variables
 }

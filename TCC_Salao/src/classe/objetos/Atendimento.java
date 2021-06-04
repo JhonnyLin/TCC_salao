@@ -40,14 +40,33 @@ public class Atendimento {
    ///////////////////////////////EXP///////////////////////////////
     //inserir item e soma
     public void inserir(Item servProd){
-        this.item.add(servProd);
-        somaTotal(servProd.valor());
+        int x = contains(this.item, servProd);
+        if(x == -1){
+            this.item.add(servProd);
+            this.qntd.add(1);
+        }else{
+            int anterior = this.qntd.get(x);
+            this.qntd.set(x, ++anterior);
+        }
+        
+        System.out.println(somaTotal(Double.parseDouble(servProd.getValor())));
     }
     
     //Excluir item e sub
     public void exclui(Item servProd){
         this.item.remove(servProd);
-        subTotal(servProd.valor());
+        //subTotal(servProd.getValor());
+    }
+    
+    //contem?
+    public int contains(ArrayList<Item> list, Item cod){
+        for(int x =0; x < list.size();x++){
+                Item item  = list.get(x);
+                if(item.getCodigo().equals(cod.getCodigo())){
+                    return x;
+                }
+        }
+        return -1;
     }
     
     ///////////////////////////////C\BD//////////////////////////////

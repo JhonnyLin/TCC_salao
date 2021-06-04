@@ -25,7 +25,6 @@ public class Agenda {
         this.cliente = new ArrayList<Cliente>();
         this.agenda = new ArrayList<Agendamento>();
     }
-      
     
     ///////////////////////////////EXP///////////////////////////////
     //Set arrays
@@ -73,7 +72,8 @@ public class Agenda {
         return false;
     }
     
-    public boolean exluir(int idList){
+    ///////////////////////////////C\BD//////////////////////////////
+    public boolean exluirBD(int idList){
         //colocar dados na tela
         //JOptionPane.showConfirmDialog(parentComponent, this);
         //if(){ confirmação
@@ -84,7 +84,7 @@ public class Agenda {
         //}
         return false;
     }
-    ///////////////////////////////C\BD//////////////////////////////
+    
     public String pesquisaBD(String texto, String tabela, String campo){
         String q = "SELECT * FROM"+ tabela +"WHERE  ";
         String query = q+campo+"= '"+texto+"'";

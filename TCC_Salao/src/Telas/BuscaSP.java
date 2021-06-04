@@ -13,15 +13,15 @@ public class BuscaSP extends javax.swing.JDialog {
         inserirImg();
     }
     
-    Imagens imge = new Imagens();
+    private Imagens imge = new Imagens();
     
-    Tabela tabela = new Tabela();
-    String camposServBD = "cd_ServProd, nm_ServProd, ds_ServProd, vl_ServProd";
-    String camposProdBD = "cd_ServProd, qt_Prod,nm_ServProd, ds_ServProd, vl_ServProd";
-    String tabelaBD = "servprod";
-    String [] nomesS = {"Cód", "Nome", "Descrição", "Valor"};
-    String [] nomesP = {"Cód","Qntd", "Nome", "Descrição", "Valor"}; 
-    
+    private Tabela tabela = new Tabela();
+    private String camposServBD = "cd_ServProd, nm_ServProd, ds_ServProd, vl_ServProd";
+    private String camposProdBD = "cd_ServProd, qt_Prod,nm_ServProd, ds_ServProd, vl_ServProd";
+    private String tabelaBD = "servprod";
+    private String [] nomesS = {"Cód", "Nome", "Descrição", "Valor"};
+    private String [] nomesP = {"Cód","Qntd", "Nome", "Descrição", "Valor"}; 
+    public String codSP;
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -181,7 +181,8 @@ public class BuscaSP extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-
+        codSP = tabela.getCod(tblServProd.getSelectedRow());
+        dispose();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void rbnServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnServActionPerformed
@@ -249,12 +250,13 @@ public class BuscaSP extends javax.swing.JDialog {
         rbnProd.setSelected(true);
         tabela.criarTabelas(tblServProd, camposProdBD, tabelaBD, 0, nomesP);
     }
-     public void configServico(){
+    
+    public void configServico(){
         rbnServ.setSelected(true);
         tabela.criarTabelas(tblServProd, camposServBD, tabelaBD, 1, nomesS);
     }
     
-     public void inserirImg(){
+    public void inserirImg(){
         JButton [] bntImg = {btnPesqCod, btnPesqNome, btnEnviar, btnCancelar};
         String [] img = {"buscar16.png", "buscar16.png","verifica.png", "remover.png"};
         imge.multiplasImagens(img, bntImg);

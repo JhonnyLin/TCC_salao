@@ -49,9 +49,6 @@ public class Cliente {
     }
     
     ///////////////////////////////C\BD///////////////////////////////
-    
-
-  
     //quary pronta
     public String inserirCli(){
         //definindo a tabela e os campos para inserir

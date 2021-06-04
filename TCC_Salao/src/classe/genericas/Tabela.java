@@ -124,4 +124,8 @@ public class Tabela {
             }
         }catch(Exception e){e.printStackTrace();}  
     }
+    
+    public String getCod(int linha){
+        return (String) dtm.getValueAt(linha, 0);
+    }
 }

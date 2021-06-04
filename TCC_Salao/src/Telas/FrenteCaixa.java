@@ -5,6 +5,12 @@ import classe.genericas.Imagens;
 import ClasseBD.ConexaoBD;
 import classe.genericas.Configuracao;
 import classe.genericas.Tabela;
+import classe.objetos.Atendimento;
+import classe.objetos.Item;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 //fazer uma classe só pra chamadas
@@ -30,6 +36,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
     Pagamento p = new Pagamento(null, true);
     ServProd s = new ServProd(null, true);
     ConexaoBD cxbd = new ConexaoBD();
+    Atendimento atd = new Atendimento();
+    
     
 
     @SuppressWarnings("unchecked")
@@ -430,7 +438,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRapido3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido3ActionPerformed
-        criarTabela.confgTabela("3", txtTotais);
+        criarItem("3");
     }//GEN-LAST:event_btnRapido3ActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
@@ -466,6 +474,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
            bsp.configServico();
        }
        config.tela("Bucar Serviço ou Produto", bsp);
+       criarTabela.confgTabela(bsp.codSP,txtTotais);
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
     private void rbtServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtServicoActionPerformed
@@ -479,10 +488,11 @@ public class FrenteCaixa extends javax.swing.JFrame {
        }else{
            JOptionPane.showMessageDialog(null, "produto");
        }
+       
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
-        criarTabela.confgTabela("2",txtTotais);
+        criarItem("1");
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
     private void btnRapido4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido4ActionPerformed
@@ -587,6 +597,35 @@ public class FrenteCaixa extends javax.swing.JFrame {
         
     }
     
+    
+    public String quarySP(String texto){
+        String q = "SELECT * FROM servprod WHERE ";
+        String query = q+"cd_ServProd"+"= '"+texto+"'";
+        return query;
+    }
+        
+    public void criarItem(String cod){
+        ResultSet rs = ConexaoBD.rsexecutar(quarySP(cod));
+        try {
+            while(rs.next()){
+                classe.objetos.Item item = new classe.objetos.Item( rs.getString(1), //cod
+                                                                    rs.getString(2), //serviço?
+                                                                    rs.getString(3), //nome
+                                                                    rs.getString(4), //ds
+                                                                    rs.getString(5), //vl
+                                                                    "",              //custo
+                                                                    rs.getString(6));//qntd
+                atd.inserir(item);
+                txtTotais.setText(""+atd.getTotal());
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(FrenteCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+        
     //minhas clases
 //    public void limparTabela(){
 //        dtm = new DefaultTableModel();
@@ -675,7 +714,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
 //        b = b * c;
 //        dtm.setValueAt(b, i, 4);
 //    }
- 
+
     public void inserirImg(){
         JButton [] btnImg = {btnPerfil, btnPesquisaSP};
         String [] urlImg = {"woman1.png", "url.png"};
@@ -698,10 +737,10 @@ public class FrenteCaixa extends javax.swing.JFrame {
         }
     }
     
-    public void setCliente(String nome, String cod){
-        this.lblSetCodigo.setText(cod);
-        this.lblSetNome.setText(nome);
-    }
+//    public void setCliente(String nome, String cod){
+//        this.lblSetCodigo.setText(cod);
+//        this.lblSetNome.setText(nome);
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlTabela;
