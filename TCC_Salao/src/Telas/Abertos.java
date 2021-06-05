@@ -3,10 +3,7 @@ package Telas;
 public class Abertos extends javax.swing.JInternalFrame {
 
     public Abertos() {
-        System.out.println(title);
-        initComponents();
-        System.out.println(title);
-        System.out.println(title);        
+        initComponents();       
     }
 
     @SuppressWarnings("unchecked")

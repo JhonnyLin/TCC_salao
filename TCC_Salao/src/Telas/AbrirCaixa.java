@@ -1,10 +1,9 @@
 package Telas;
 
-import classe.genericas.Configuracao;
+import Enum.TiposMovimento;
 import classe.negocios.Inicializacao;
 import classe.genericas.Limpeza;
 import classe.objetos.Movimento;
-import javax.swing.JOptionPane;
 
 public class AbrirCaixa extends javax.swing.JDialog {
 
@@ -100,8 +99,7 @@ public class AbrirCaixa extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     Inicializacao inicializacao;
     Movimento mvm;
-    Configuracao config = new Configuracao();
-    FrenteCaixa frm = new FrenteCaixa();
+    TiposMovimento tipo;
     Limpeza limp = new Limpeza();
     private void cbxAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAtendenteActionPerformed
       
@@ -112,33 +110,20 @@ public class AbrirCaixa extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String titulo = this.getTitle();
-        if(titulo.equals("Abrir Caixa")){
-            inicializacao = new Inicializacao(atendente(), valor());
-            if(valor().equals(inicializacao.getValorInicio())){
-                JOptionPane.showMessageDialog(null, "Caixa aberto");
-                //interface
-                config.tela("Frente de Caixa", frm);
-                limp.limpezaCampo(mscValor);
-                this.dispose();
-            }  
-        }else if(titulo.equals("Retirada")){
-            //verificando os dados
-            //null, titulo, tipo do Joptionpane e icone
-            if(JOptionPane.showConfirmDialog(null,"Atendente: "+atendente()+". \n Valor: "+valor(), "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
-                //faz a operação
-                if(inicializacao.sangria(atendente(), valor())){
-                    JOptionPane.showMessageDialog(null, "retirada ok");
-                    limp.limpezaCampo(mscValor);
-                    System.out.println(inicializacao.getValorInicio());
-                }  
-            }            
-        }else if(titulo.equals("Fechar Caixa")){
-            //inicializacao.fechamento(atendente(),valor());
-            System.out.println(inicializacao.fechamento(atendente(),valor()));
-            limp.limpezaCampo(mscValor);
+        switch(this.getTitle()){
+            case "Abrir Caixa":
+                mvm = new Movimento(tipo.ABERTURA);
+                break;
+            case "Retirada":
+                mvm = new Movimento(tipo.SAQUE);
+                break;
+            case "Fechar Caixa":
+                mvm = new Movimento(tipo.FECHAMENTO);
+                break;
+            default: System.out.println("Default");    
         }
-        
+        mvm.operacao(mscValor.getText(), cbxAtendente.getItemAt(cbxAtendente.getSelectedIndex()));
+        limp.limpezaCampo(mscValor);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -181,13 +166,9 @@ public class AbrirCaixa extends javax.swing.JDialog {
         });
     }
     
-    public String atendente(){
-        return (String) this.cbxAtendente.getSelectedItem();
-    }
     
-    public Double valor(){
-        double number = Double.parseDouble(this.mscValor.getText());
-        return number;
+    private String valor(){
+        return this.mscValor.getText();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

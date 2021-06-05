@@ -1,5 +1,6 @@
 package Telas;
 
+import lixo.Usuario;
 import lixo.Agendamento;
 import ClasseBD.ConexaoBD;
 import classe.genericas.Configuracao;
@@ -28,7 +29,6 @@ public class Inicio extends javax.swing.JFrame {
     AbertoAgendamento openAgend = new AbertoAgendamento();
     AbertoUser openUser = new AbertoUser();
     AbertoCliente openCli = new AbertoCliente();
-    //        this.openAgend =
     
     
     @SuppressWarnings("unchecked")

@@ -327,8 +327,7 @@ public class Fornecedor extends javax.swing.JDialog {
         ds_Endereco = atxEndFornecedor.getText();
         //colocando as variaveis na quary
         String a = "VALUES('"+ nm_Fornecedor +"', '"+cd_CNPJ +"' ,'"+ cd_Telefone +"','"+ ds_Email +"','"+ ds_Endereco +"')";
-        //teste
-        System.out.println(q+a);
+        
         return q+a;
     }
     

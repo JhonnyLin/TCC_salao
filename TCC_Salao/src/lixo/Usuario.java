@@ -1,4 +1,4 @@
-package Telas;
+package lixo;
 
 import lixo.EstadoCivil;
 import javax.swing.DefaultComboBoxModel;

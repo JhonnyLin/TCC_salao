@@ -3,10 +3,7 @@ package Telas;
 public class AbertoCliente extends javax.swing.JInternalFrame {
 
     public AbertoCliente() {
-        System.out.println(title);
-        initComponents();
-        System.out.println(title);
-        System.out.println(title);        
+        initComponents();       
     }
 
     @SuppressWarnings("unchecked")

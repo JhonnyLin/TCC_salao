@@ -3,10 +3,7 @@ package Telas;
 public class AbertoUser extends javax.swing.JInternalFrame {
 
     public AbertoUser() {
-        System.out.println(title);
-        initComponents();
-        System.out.println(title);
-        System.out.println(title);        
+        initComponents();       
     }
 
     @SuppressWarnings("unchecked")

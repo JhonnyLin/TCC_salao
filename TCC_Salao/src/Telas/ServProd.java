@@ -194,7 +194,6 @@ public class ServProd extends javax.swing.JDialog {
             f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"','"+b+"')";
         }
         ConexaoBD.executar(a+f);
-        //System.out.println(a+f);
         limpeza();
 
     }//GEN-LAST:event_btnEnviarActionPerformed
