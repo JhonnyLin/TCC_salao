@@ -1,15 +1,15 @@
 package classe.objetos;
 
 public class Movimento {
-    private int id_Tipo_movimento;
+    private String id_Tipo_movimento;
     private double valor;
     
-    public Movimento(int id_Tipo_movimento, double valor ){
+    public Movimento(String id_Tipo_movimento, double valor ){
         this.id_Tipo_movimento = id_Tipo_movimento;
         this.valor = valor;
     }
     ///////////////////////////////SET///////////////////////////////
-    public boolean tipo(int indice){
+    public boolean tipo(String indice){
         this.id_Tipo_movimento = indice;
         return true;
     }
@@ -18,7 +18,7 @@ public class Movimento {
         return true;
     }
     ///////////////////////////////GET///////////////////////////////
-     public int tipo(){
+     public String tipo(){
          return id_Tipo_movimento;
      }
      public double valor(){
@@ -30,8 +30,8 @@ public class Movimento {
     public boolean inserir(){
         return false;
     }
-    //alterar
-    public boolean alterar(){
+    //consultar
+    public boolean consultar(){
         return false;
     }
     //excluir

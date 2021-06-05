@@ -446,6 +446,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
         config.tela("Cliente", c);
         lblSetCodigo.setText(c.cliente.getCod());
         lblSetNome.setText(c.cliente.getNome());
+        atd.setCliente(c.cliente.getCod());
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
@@ -474,7 +475,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
            bsp.configServico();
        }
        config.tela("Bucar Serviço ou Produto", bsp);
-       criarTabela.confgTabela(bsp.codSP,txtTotais);
+        criarItem(bsp.codSP);
+//       criarTabela.confgTabela(bsp.codSP,txtTotais);
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
     private void rbtServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtServicoActionPerformed
@@ -482,7 +484,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtServicoActionPerformed
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
-       criarTabela.confgTabela( "1", txtTotais);
+//       criarTabela.confgTabela( "1", txtTotais);
        if(rbtServico.isSelected() == true){
            JOptionPane.showMessageDialog(null, "serviço");
        }else{
@@ -492,75 +494,75 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
-        criarItem("1");
+        criarItem("2");
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
     private void btnRapido4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido4ActionPerformed
-        criarTabela.confgTabela("4",txtTotais);
+//        criarTabela.confgTabela("4",txtTotais);
     }//GEN-LAST:event_btnRapido4ActionPerformed
 
     private void btnRapido5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido5ActionPerformed
-        criarTabela.confgTabela("5", txtTotais);
+//        criarTabela.confgTabela("5", txtTotais);
     }//GEN-LAST:event_btnRapido5ActionPerformed
 
     private void btnRapido6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido6ActionPerformed
-        criarTabela.confgTabela("6", txtTotais);
+//        criarTabela.confgTabela("6", txtTotais);
     }//GEN-LAST:event_btnRapido6ActionPerformed
 
     private void btnRapido7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido7ActionPerformed
-        criarTabela.confgTabela("7", txtTotais);
+//        criarTabela.confgTabela("7", txtTotais);
     }//GEN-LAST:event_btnRapido7ActionPerformed
 
     private void btnRapido8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido8ActionPerformed
-        criarTabela.confgTabela("8", txtTotais);
+//        criarTabela.confgTabela("8", txtTotais);
     }//GEN-LAST:event_btnRapido8ActionPerformed
 
     private void btnRapido9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido9ActionPerformed
-        criarTabela.confgTabela("9",txtTotais);
+//        criarTabela.confgTabela("9",txtTotais);
     }//GEN-LAST:event_btnRapido9ActionPerformed
 
     private void btnRapido10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido10ActionPerformed
-        criarTabela.confgTabela("10", txtTotais);
+//        criarTabela.confgTabela("10", txtTotais);
     }//GEN-LAST:event_btnRapido10ActionPerformed
 
     private void btnRapido11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido11ActionPerformed
-        criarTabela.confgTabela("11",txtTotais);
+//        criarTabela.confgTabela("11",txtTotais);
     }//GEN-LAST:event_btnRapido11ActionPerformed
 
     private void btnRapido12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido12ActionPerformed
-        criarTabela.confgTabela("12", txtTotais);
+//        criarTabela.confgTabela("12", txtTotais);
     }//GEN-LAST:event_btnRapido12ActionPerformed
 
     private void btnRapido13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido13ActionPerformed
-        criarTabela.confgTabela("13",txtTotais);
+//        criarTabela.confgTabela("13",txtTotais);
     }//GEN-LAST:event_btnRapido13ActionPerformed
 
     private void btnRapido14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido14ActionPerformed
-        criarTabela.confgTabela("14",txtTotais);
+//        criarTabela.confgTabela("14",txtTotais);
     }//GEN-LAST:event_btnRapido14ActionPerformed
 
     private void btnRapido15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido15ActionPerformed
-        criarTabela.confgTabela("15",txtTotais);
+//        criarTabela.confgTabela("15",txtTotais);
     }//GEN-LAST:event_btnRapido15ActionPerformed
 
     private void btnRapido16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido16ActionPerformed
-        criarTabela.confgTabela("16", txtTotais);
+//        criarTabela.confgTabela("16", txtTotais);
     }//GEN-LAST:event_btnRapido16ActionPerformed
 
     private void btnRapido17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido17ActionPerformed
-        criarTabela.confgTabela("17", txtTotais);
+//        criarTabela.confgTabela("17", txtTotais);
     }//GEN-LAST:event_btnRapido17ActionPerformed
 
     private void btnRapido18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido18ActionPerformed
-        criarTabela.confgTabela("18",txtTotais);
+//        criarTabela.confgTabela("18",txtTotais);
     }//GEN-LAST:event_btnRapido18ActionPerformed
 
     private void btnRapido19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido19ActionPerformed
-        criarTabela.confgTabela("19", txtTotais);
+//        criarTabela.confgTabela("19", txtTotais);
     }//GEN-LAST:event_btnRapido19ActionPerformed
 
     private void btnRapido20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido20ActionPerformed
-        criarTabela.confgTabela("20",txtTotais);
+//        criarTabela.confgTabela("20",txtTotais);
     }//GEN-LAST:event_btnRapido20ActionPerformed
 
     public static void main(String args[]) {
@@ -615,7 +617,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
                                                                     rs.getString(5), //vl
                                                                     "",              //custo
                                                                     rs.getString(6));//qntd
-                atd.inserir(item);
+                atd.inserir(item, criarTabela);
                 txtTotais.setText(""+atd.getTotal());
             }
                         

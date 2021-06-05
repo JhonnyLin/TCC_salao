@@ -131,7 +131,7 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         //passar indice pro excluir do agenda
-        agenda.exluirBD(0);
+        agenda.exluirBD(tblAgenda.getSelectedRow());
     }//GEN-LAST:event_btnExcluirActionPerformed
 
 

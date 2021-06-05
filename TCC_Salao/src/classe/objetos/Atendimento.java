@@ -1,12 +1,15 @@
 package classe.objetos;
 
+import classe.genericas.Tabela;
 import classe.objetos.Item;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class Atendimento {
     private ArrayList<Item> item;
     private ArrayList<Integer> qntd;
-    private int id_Cliente;
+    private String id_Cliente;
     private double total;
     
     public Atendimento(){
@@ -19,12 +22,13 @@ public class Atendimento {
     public Double getTotal(){
         return this.total;
     }
-    public int id_Cliente(){
+    
+    public String getIdCliente(){
         return this.id_Cliente;
     }
     
     ///////////////////////////////SET///////////////////////////////
-    public boolean Cliente(int id){
+    public boolean setCliente(String id){
         this.id_Cliente = id;
         return true;
     }
@@ -38,27 +42,37 @@ public class Atendimento {
     }
     
    ///////////////////////////////EXP///////////////////////////////
-    //inserir item e soma
-    public void inserir(Item servProd){
+    //inserir item nos list e gera totais
+    public void inserir(Item servProd, Tabela tbl){
+        
         int x = contains(this.item, servProd);
         if(x == -1){
+            if(servProd.getServico().equals("0") && 1 > servProd.getQuantidade()){
+                JOptionPane.showMessageDialog(null,"Não há estoque");
+                return;
+            }
+            tbl.inserirItem(servProd);
             this.item.add(servProd);
             this.qntd.add(1);
         }else{
             int anterior = this.qntd.get(x);
+            if(servProd.getServico().equals("0") && anterior >= servProd.getQuantidade()){
+                JOptionPane.showMessageDialog(null,"Não há estoque");
+                return;
+            }
+            tbl.atualizarItem(x);
             this.qntd.set(x, ++anterior);
         }
-        
-        System.out.println(somaTotal(Double.parseDouble(servProd.getValor())));
+        System.out.println(somaTotal(servProd.getValor()));
     }
-    
-    //Excluir item e sub
+      
+    //Excluir item e sub(V2)
     public void exclui(Item servProd){
         this.item.remove(servProd);
         //subTotal(servProd.getValor());
     }
     
-    //contem?
+    //contem item na lista?
     public int contains(ArrayList<Item> list, Item cod){
         for(int x =0; x < list.size();x++){
                 Item item  = list.get(x);
@@ -70,17 +84,8 @@ public class Atendimento {
     }
     
     ///////////////////////////////C\BD//////////////////////////////
-    //Atulizar banco
-    public boolean atulizarBD(int Cod, int qntd){
-        for(Item item : this.item) {
-           if(item.atualizarBD()){
-               System.out.println("Atualizado");
-           }else{
-               System.out.println("Erro no banco");
-           }
-        }
-        return false;
-    }
+    //Inserir
+    //Excluir
     
     
 }

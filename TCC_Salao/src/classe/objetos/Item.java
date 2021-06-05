@@ -13,7 +13,7 @@ public class Item {
     private String qt_prod;
     
     public Item(String cd_ServProd, String bl_Serv,String nm_ServProd,
-            String ds_ServProd, String vl_ServProd, String qt_prod, String vl_ServProd_Custo){
+            String ds_ServProd, String vl_ServProd, String vl_ServProd_Custo, String qt_prod){
         this.cd_ServProd = cd_ServProd;
         this.bl_Serv = bl_Serv;
         this.nm_ServProd = nm_ServProd;
@@ -59,14 +59,17 @@ public class Item {
     public String getDescricao(){
         return this.ds_ServProd;
     }
-    public String getValor(){
-        return this.vl_ServProd;
+    public Double getValor(){
+        return Double.parseDouble(this.vl_ServProd);
     }
-    public String getValorCusto(){
-        return this.vl_ServProd_Custo;
+    public double getValorCusto(){
+        return Double.parseDouble(this.vl_ServProd_Custo);
     }
-    public String getQuantidade(){
-        return this.qt_prod;
+    public int getQuantidade(){
+        if(this.qt_prod.equals("")){
+            return 0;
+        }
+        return Integer.parseInt(this.qt_prod);
     }
       
     ///////////////////////////////C\BD///////////////////////////////

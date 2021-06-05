@@ -3,6 +3,7 @@ package Telas;
 import classe.genericas.Configuracao;
 import classe.negocios.Inicializacao;
 import classe.genericas.Limpeza;
+import classe.objetos.Movimento;
 import javax.swing.JOptionPane;
 
 public class AbrirCaixa extends javax.swing.JDialog {
@@ -98,6 +99,7 @@ public class AbrirCaixa extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     Inicializacao inicializacao;
+    Movimento mvm;
     Configuracao config = new Configuracao();
     FrenteCaixa frm = new FrenteCaixa();
     Limpeza limp = new Limpeza();
@@ -136,6 +138,7 @@ public class AbrirCaixa extends javax.swing.JDialog {
             System.out.println(inicializacao.fechamento(atendente(),valor()));
             limp.limpezaCampo(mscValor);
         }
+        
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

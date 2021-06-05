@@ -62,12 +62,6 @@ public class Agendamento {
     public boolean inserirBD() {
         return false;
     }
-
-    //alterar
-    public boolean alterarBD() {
-        return false;
-    }
-
     //excluir
     public boolean excluirBD() {
         return false;
