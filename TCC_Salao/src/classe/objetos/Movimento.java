@@ -8,35 +8,31 @@ import javax.swing.JOptionPane;
 
 public class Movimento {
     private TiposMovimento id_Tipo_movimento;
+    private Inicializacao inicializacao;
     private String valor;
     private String atendente;
     private Configuracao config = new Configuracao();
     private FrenteCaixa frm = new FrenteCaixa();
-   
     
-    public Movimento(TiposMovimento id_Tipo_movimento){
+    public Movimento(TiposMovimento id_Tipo_movimento, Inicializacao inicializacao){
         this.id_Tipo_movimento = id_Tipo_movimento;
-    }
-    Inicializacao inicia;
+        this.inicializacao = inicializacao;
+   }
     ///////////////////////////////SET///////////////////////////////
     public boolean setTipo(TiposMovimento indice){
         this.id_Tipo_movimento = indice;
         return true;
     }
-    public boolean setValor(String valor){
+    public void addVA(String valor, String atendente){
+        this.atendente = atendente;
         this.valor = valor;
-        return true;
-    }
-    public boolean setAtendente(String atendente){
-        this.atendente= atendente;
-        return true;
     }
     ///////////////////////////////GET///////////////////////////////
     public TiposMovimento getTipo(){
          return this.id_Tipo_movimento;
     }
     public String getValor(){
-         return this.valor;
+        return this.valor;
     }
     public String getAtendente(){
          return this.atendente;
@@ -45,28 +41,56 @@ public class Movimento {
     public void operacao(String valor, String atendente){
         switch(this.id_Tipo_movimento){
             case ABERTURA:
-                this.atendente = atendente;
-                this.valor = valor;
-                inicia = new Inicializacao(atendente, valor);
-                JOptionPane.showMessageDialog(null, "Caixa aberto");
-                //interface
-                config.tela("Frente de Caixa", frm);
+                addVA(valor, atendente);
+                if(inicializacao.getAberto()){//troco
+                    inicializacao.setTroco(valor);
+                    JOptionPane.showMessageDialog(null, "Troco adicionado ao caixa");
+                }else{ //inicializa
+                    if(inicializacao.Inicializar(atendente, valor)){
+                        JOptionPane.showMessageDialog(null, "Caixa aberto");
+                        config.tela("Frente de Caixa", frm);  
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Erro ao abrir caixa");
+                    }
+                }
                 break;
             case SAQUE:
-                this.atendente = atendente;
-                this.valor = valor;
-                if(JOptionPane.showConfirmDialog(null,"Atendente: "+getAtendente()+". \n Valor: "+getValor(), "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
-                    JOptionPane.showMessageDialog(null, "retirada ok"); 
-                } 
+                if(inicializacao.getAberto()){//cx aberto
+                    if(JOptionPane.showConfirmDialog(null,"Atendente: "+ atendente+". \n Valor: "+valor,
+                            "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+                        if(inicializacao.delValor(valor)){
+                            JOptionPane.showMessageDialog(null, "retirada ok"); 
+                            addVA(valor, atendente);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Valor maior que o saldo em caixa");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Operação Cancelada"); 
+                    } 
+                }else{// cx fechado
+                    JOptionPane.showMessageDialog(null, "Por favor, Abrir o caixa antes da operação");
+                }
                 break;
             case FECHAMENTO:
-                this.atendente = atendente;
-                this.valor = valor;
-                System.out.println("fechou"); 
+                if(inicializacao.getAberto()){ //cx aberto
+                    if(JOptionPane.showConfirmDialog(null,"Atendente: "+ atendente+". \n Valor: "+valor,
+                            "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+                        if(!inicializacao.fechar(valor)){
+                            addVA(valor, atendente); 
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Operação Cancelada");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Operação Cancelada"); 
+                    }
+                }else{//cx fechado
+                    JOptionPane.showMessageDialog(null, "Por favor, Abrir o caixa antes da operação");
+                }
                 break;
             default: System.out.println("Default");    
         }
     }
+    
     ///////////////////////////////C\BD//////////////////////////////
     //inserir
     public boolean inserir(){

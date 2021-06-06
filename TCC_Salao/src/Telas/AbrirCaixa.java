@@ -97,8 +97,8 @@ public class AbrirCaixa extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    Inicializacao inicializacao;
-    Movimento mvm;
+    Inicializacao inicializacao = new Inicializacao();
+    Movimento mvm ;
     TiposMovimento tipo;
     Limpeza limp = new Limpeza();
     private void cbxAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAtendenteActionPerformed
@@ -112,13 +112,13 @@ public class AbrirCaixa extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         switch(this.getTitle()){
             case "Abrir Caixa":
-                mvm = new Movimento(tipo.ABERTURA);
+                mvm = new Movimento(tipo.ABERTURA, inicializacao);
                 break;
             case "Retirada":
-                mvm = new Movimento(tipo.SAQUE);
+                mvm = new Movimento(tipo.SAQUE, inicializacao);
                 break;
             case "Fechar Caixa":
-                mvm = new Movimento(tipo.FECHAMENTO);
+                mvm = new Movimento(tipo.FECHAMENTO, inicializacao);
                 break;
             default: System.out.println("Default");    
         }
