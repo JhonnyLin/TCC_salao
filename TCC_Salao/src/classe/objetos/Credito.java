@@ -24,15 +24,9 @@ public class Credito {
     public int getAtendimento(){
         return this.id_Atendimento;
     }
-    ///////////////////////////////EXP///////////////////////////////
-    
     ///////////////////////////////C\BD//////////////////////////////
     //inserir
     public boolean inserir(){
-        return false;
-    }
-    //alterar
-    public boolean alterar(){
         return false;
     }
     //excluir

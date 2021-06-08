@@ -1,22 +1,24 @@
 package Telas;
 
+import Enum.TiposPagamento;
 import classe.genericas.Imagens;
+import classe.objetos.Atendimento;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class Pagamento extends javax.swing.JDialog {
-
+    private Imagens imge;
+    private Atendimento atendimento;
+    private boolean x;
+    
     public Pagamento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.x =  true;
+        this.imge = new Imagens();
         inserirImg();
         configinicializacao();
     }
-    
-    boolean x =  true;
-    String valor;
-    Imagens imge = new Imagens();
-    double acomulado = 0;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -111,20 +113,17 @@ public class Pagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxTotalActionPerformed
 
     private void btnFiadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiadoActionPerformed
-        JOptionPane.showMessageDialog(null, "modulo ainda n disponivel");
+        JOptionPane.showMessageDialog(null, "Modulo não ativo");
     }//GEN-LAST:event_btnFiadoActionPerformed
 
     private void btnDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDinheiroActionPerformed
-        pag();
+        pag(TiposPagamento.DINHEIRO);        
     }//GEN-LAST:event_btnDinheiroActionPerformed
 
     private void btnCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCartaoActionPerformed
-        pag();
+        pag(TiposPagamento.CREDITO);
     }//GEN-LAST:event_btnCartaoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -164,34 +163,25 @@ public class Pagamento extends javax.swing.JDialog {
             }
         });
     }
-   //faz a subitração do valor
-    public void pag(){
-        //pega o valor que veio do frentecx e transforma em double(vem texto)
-        double x = Double.parseDouble(valor);
-        //pega um a variavel e soma o valor acomulado mais oq tem no txt pra saber o valor total pago
-        double y = acomulado+= Double.parseDouble(txtValor.getText());
-        //se o valor total - valor for maior que zero quer dizer que ainda falta uma quantia
-        if(x-y > 0){
-            //devolve o valor da operação "0.00"
-            txtValor.setText(x-y+"");
-        }else{
-            //printa o valor do troco
-            JOptionPane.showMessageDialog(null, "Troco: R$ "+ ((x-y)*-1));
-            //zera o acomulado
-            acomulado = 0.00;
-            txtValor.setText(acomulado+"");
-        }
+    public void pag(TiposPagamento tp){
+        String x = atendimento.pagamento(tp, Double.parseDouble(txtValor.getText()));
+        txtValor.setText(""+x);
         configinicializacao();
-        ativo();
+        if(x.equals("0.0")){
+            dispose();
+        }
     }
     
     //insere o valor no campo
-    public void setValor(String valor){
-        txtValor.setText(valor);
-        this.valor = valor;
-        //System.out.println(valor);
+    public void setValor(Double valor){
+        txtValor.setText(valor+"");
     }
     
+    public void setAtendiemnto(Atendimento atendimento){
+        this.atendimento = atendimento;
+        setValor(atendimento.getTotal());
+    }
+   
     //config do fram
     public void configinicializacao(){
         x =  true;
@@ -211,19 +201,13 @@ public class Pagamento extends javax.swing.JDialog {
             txtValor.setEnabled(x);
         }
     }
-    
-    //se o valor é igual a zero ele fecha o pagamentos
-    public void ativo(){
-        if(txtValor.getText().equals("0.0")){
-            dispose();
-        }
-    }
-    
+   
     public void inserirImg(){
         JButton [] bntImg = {btnDinheiro, btnCartao, btnFiado};
         String [] img = {"money.png", "pay.png","bill.png"};
         imge.multiplasImagens(img, bntImg);        
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCartao;
     private javax.swing.JButton btnDinheiro;

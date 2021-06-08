@@ -1,21 +1,20 @@
 package classe.objetos;
 
+import Enum.TiposPagamento;
 import classe.genericas.Tabela;
 import classe.objetos.Item;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 public class Atendimento {
     private ArrayList<Item> item;
     private ArrayList<Integer> qntd;
+    private ArrayList<Pagamento> pagamento;
     private String id_Cliente;
     private double total;
     
     public Atendimento(){
-        this.item = new ArrayList<Item>();
-        this.qntd = new ArrayList<Integer>();
-        this.total = 0.0;
+        construtor();
     }
     ///////////////////////////////GET///////////////////////////////
     //Get Totais
@@ -40,8 +39,47 @@ public class Atendimento {
     public Double subTotal(double valor){
         return this.total = this.total - valor;
     }
-    
+    public void construtor(){
+        this.item = new ArrayList<Item>();
+        this.qntd = new ArrayList<Integer>();
+        this.pagamento = new ArrayList<Pagamento>();
+        this.id_Cliente = ""; 
+        this.total = 0.0;
+    }
    ///////////////////////////////EXP///////////////////////////////
+    public String pagamento(TiposPagamento pagamento, double valor){
+        double x = valor + pago();
+        double y = x - total;
+        Pagamento pg;
+        if(x == total){//sem troco
+            pg = new Pagamento(pagamento, valor);
+            this.pagamento.add(pg);
+            JOptionPane.showMessageDialog(null, "Pagamento ok");
+            return "0.0";
+        }else if(x > total){//com troco
+            pg = new Pagamento(pagamento, valor - y );
+            this.pagamento.add(pg);
+            JOptionPane.showMessageDialog(null, "Troco: "+ y);
+            return "0.0";
+        }else{//falta pagar
+            pg = new Pagamento(pagamento, valor);
+            this.pagamento.add(pg);
+            return ""+(y*-1);
+        }
+    }
+    
+    public double pago(){
+        double soma = 0;
+        if(pagamento.size()== 0){
+            return 0;
+        }else{
+            for(Pagamento p : pagamento){
+                soma = soma + p.getValor();
+            }
+            return soma;
+        }
+    }
+
     //inserir item nos list e gera totais
     public void inserir(Item servProd, Tabela tbl){
         
@@ -63,14 +101,13 @@ public class Atendimento {
             tbl.atualizarItem(x);
             this.qntd.set(x, ++anterior);
         }
-        System.out.println(somaTotal(servProd.getValor()));
+        somaTotal(servProd.getValor());
     }
       
     //Excluir item e sub(V2)
-    public void exclui(Item servProd){
-        this.item.remove(servProd);
-        //subTotal(servProd.getValor());
-    }
+//    public void exclui(Item servProd){
+//        this.item.remove(servProd);
+//    }
     
     //contem item na lista?
     public int contains(ArrayList<Item> list, Item cod){
@@ -85,6 +122,16 @@ public class Atendimento {
     
     ///////////////////////////////C\BD//////////////////////////////
     //Inserir
+    public String id_atendimentoBD(){
+        return "";
+    }
+    public void inserirBD(){
+        //falta inserir atendimento
+        for(Pagamento p : pagamento){
+                p.inserirBD("teste");
+        }
+    }
+    
     //Excluir
     
     

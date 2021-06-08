@@ -32,8 +32,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
     Imagens imge =  new Imagens();
     Cliente c = new Cliente(null, true);
     BuscaSP bsp = new BuscaSP(null, true);
-    Fornecedor f = new Fornecedor(null, true);
-    Pagamento p = new Pagamento(null, true);
+//    Fornecedor f = new Fornecedor(null, true);
     ServProd s = new ServProd(null, true);
     ConexaoBD cxbd = new ConexaoBD();
     Atendimento atd = new Atendimento();
@@ -450,15 +449,26 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
-        String x = txtTotais.getText();
         if(tblCarrinho.getRowCount()==0){
             JOptionPane.showMessageDialog(null, "Não há produtos...");
         }else{
-            //System.out.println(txtTotais.getText());            
-            p.setValor(txtTotais.getText());            
-            p.configinicializacao();
-            config.tela("Pagamento", p);
-            criarTabela.limparTabela(tblCarrinho, nomes, txtTotais);
+            if(lblSetCodigo.getText().equals("0000000")){
+                JOptionPane.showMessageDialog(null, "Por favor, insira o cliente");
+            }else{
+                Pagamento p = new Pagamento(null, true);
+                p.setAtendiemnto(atd);   
+                config.tela("Pagamento", p);
+//                if(){//pra ver se foi cancelado o pagamento ou não
+
+                    criarTabela.limparTabela(tblCarrinho, nomes, txtTotais);
+                    atd.inserirBD();
+                    atd.construtor();
+                    lblSetCodigo.setText("0000000");
+                    lblSetNome.setText("xxxxxxx xxxxxxx xxxxxx");
+//                }
+                
+            }           
+           
         }
     
     }//GEN-LAST:event_btnPagarActionPerformed
@@ -476,7 +486,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
        }
        config.tela("Bucar Serviço ou Produto", bsp);
         criarItem(bsp.codSP);
-//       criarTabela.confgTabela(bsp.codSP,txtTotais);
     }//GEN-LAST:event_btnPesquisaSPActionPerformed
 
     private void rbtServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtServicoActionPerformed
@@ -484,7 +493,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtServicoActionPerformed
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
-//       criarTabela.confgTabela( "1", txtTotais);
        if(rbtServico.isSelected() == true){
            JOptionPane.showMessageDialog(null, "serviço");
        }else{
@@ -599,7 +607,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
         
     }
     
-    
     public String quarySP(String texto){
         String q = "SELECT * FROM servprod WHERE ";
         String query = q+"cd_ServProd"+"= '"+texto+"'";
@@ -626,97 +633,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
         }
     }
     
-    
-        
-    //minhas clases
-//    public void limparTabela(){
-//        dtm = new DefaultTableModel();
-//        criarTabela.criarTabelas(tblCarrinho, nomes);
-//        txtTotais.setText("");
-//    }
-    
-//    private void criarTabela(){   
-//            //adiciona as colunas
-//            tblCarrinho.setModel(dtm);
-//            //qtd colunas
-//            int qtdcoluna = 5;
-//            String [] nomes = {"Cód","Descrição", "Qtde", "Vl Un.", "Vl Total"};  
-//            //add as colunas na tabela
-//            for(int i =0; i<qtdcoluna; i++){
-//                //adiciona os nomes no dtm que é o model
-//                //ele é quem adiciona os dados na tabela
-//                dtm.addColumn(nomes[i]);
-//            }
-//           
-//    }
-    
-//    public void confgTabela(String cod, String q){
-//        boolean fdp = true;
-//        if(dtm.getRowCount() != 0){
-//            //posso colocar return para melhorar o processamento
-//            for(int i =0; i<dtm.getRowCount(); i++ ){
-//                if(dtm.getValueAt(i, 0).equals(cod)){
-//                    int a = Integer.parseInt(dtm.getValueAt(i, 2).toString());
-//                    a++;
-//                    dtm.setValueAt(a, i, 2);
-//                    fdp = false;
-//                    valorQt(i);
-//                }
-//            }
-//        }
-//        if(fdp){
-//            inserirSP(q);
-//            valorQt(dtm.getRowCount()-1);
-//        }
-//        somaTotal();
-//    }
-//    
-//    private void somaTotal(){
-//        double b = 0;
-//        for(int i = 0; i<dtm.getRowCount(); i++){
-//            String a = dtm.getValueAt(i, 4).toString();
-//            double c = Double.parseDouble(a);
-//            b = b + c;
-//            txtTotais.setText(""+b);
-//        }
-//    }
-//    
-//    private void inserirSP(String q){
-//        
-//        try{
-//            //a execução do comando será feita pelo método rsexecutar, na classe AcesspBD
-//            //o retorno do metodo sera um Resulset que sera armazenado em rsresultado
-//            rsresultado = ConexaoBD.rsexecutar(q);
-//           
-//            //adicionar as linhas
-//            //array que guarda os dados de cada linha
-//            String [] row = new String[5];
-//            while(rsresultado.next()){
-//                int y = 1;
-//                for(int i=0;i<row.length;i++){
-//                    //adcionaos dados no array
-//                    if(i!=2 && i != 4){
-//                        row[i] = rsresultado.getString(y);
-//                        y++;
-//                    }else{
-//                        if(i==2){
-//                            row[i] = "1";
-//                        }
-//                    }  
-//                }
-//                //adicionar a linha toda na tabela
-//                dtm.addRow(row);
-//            }
-//        }catch(Exception e){e.printStackTrace();}  
-//    }
-//    
-//    private void valorQt(int i){
-//        double c = Double.parseDouble(dtm.getValueAt(i, 3).toString());
-//        double b = Double.parseDouble(dtm.getValueAt(i, 2).toString());
-//        b = b * c;
-//        dtm.setValueAt(b, i, 4);
-//    }
-
     public void inserirImg(){
         JButton [] btnImg = {btnPerfil, btnPesquisaSP};
         String [] urlImg = {"woman1.png", "url.png"};
@@ -739,11 +655,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
         }
     }
     
-//    public void setCliente(String nome, String cod){
-//        this.lblSetCodigo.setText(cod);
-//        this.lblSetNome.setText(nome);
-//    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PnlTabela;
     private javax.swing.JMenuBar bmnFrente;
