@@ -304,7 +304,8 @@ public class Fornecedor extends javax.swing.JDialog {
         String query = q+campo+"= '"+texto+"'";
         return query;
     }
-        public void RetornarFornecedor(ResultSet rs ) throws SQLException{
+    
+    public void RetornarFornecedor(ResultSet rs ) throws SQLException{
         while(rs.next()){
             txtCodFornecedor.setText(rs.getString(1));
             txtNmFornecedor.setText(rs.getString(2));

@@ -136,6 +136,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu1.add(jMenuItem17);
 
         jMenuItem18.setText("Resultado");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem18);
 
         MenuBar.add(jMenu1);
@@ -394,6 +399,12 @@ public class Inicio extends javax.swing.JFrame {
         abertos.inicializador(2);
         config.tela("Abertos",abertos, desktop);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        Resultado result = new Resultado(this, true);
+        result.config(abrirCX.inicializacao, "0.0");
+        config.tela("Resultado Parcial", result);
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

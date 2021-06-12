@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 public class Inicializacao {
     private Double valorInicio;
     private Double valorTotal;
+    private Double valorRetirada;
     private String atendente;
     private boolean aberto;
     //criar lista com atendente e valor
@@ -14,6 +15,7 @@ public class Inicializacao {
         this.aberto = false;
         this.valorTotal = 0.0;
         this.valorInicio = 0.0;
+        this.valorRetirada = 0.0;
     }
     
     //Metodos
@@ -23,7 +25,7 @@ public class Inicializacao {
             this.valorInicio = 0.0;
             this.valorTotal = 0.0;
             return this.aberto = false; 
-        }else if(JOptionPane.showConfirmDialog(null,"Caixa não bate, aceita a diferença? \n "+ (valorTotal-x)+ "",
+        }else if(JOptionPane.showConfirmDialog(null,"Caixa não bate, aceita a diferença? \n "+ (x-valorTotal)+ "",
                             "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
             this.valorInicio = 0.0;
             this.valorTotal = 0.0;
@@ -32,8 +34,7 @@ public class Inicializacao {
         return true;
     }
             
-    public boolean Inicializar(String atendente, String valor){
-        this.atendente = atendente;
+    public boolean Inicializar(String valor){
         setTroco(valor);
         return this.aberto = true;
     }
@@ -46,11 +47,12 @@ public class Inicializacao {
     public void addValor(String valor){
         this.valorTotal = this.valorTotal + Double.parseDouble(valor);
     }
-    //saque falta logica
+    //saque 
     public boolean delValor(String valor){
         double x = Double.parseDouble(valor);
         if(this.valorTotal >= x){
             this.valorTotal = this.valorTotal - x; 
+            this.valorRetirada = this.valorRetirada + x;
             return true;
         }  
         return false;
@@ -60,7 +62,18 @@ public class Inicializacao {
     public boolean getAberto(){
         return this.aberto;
     }
-    
+    public Double getVlTotal(){
+        return this.valorTotal;
+    }    
+    public Double getVlInicial(){
+        return this.valorInicio;
+    }    
+    public Double getVlRetirada(){
+        return this.valorRetirada;
+    }
+    public String getAtendente(){
+        return this.atendente;
+    }
 
     
 }

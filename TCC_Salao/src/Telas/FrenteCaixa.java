@@ -91,7 +91,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
         jMenu5.setText("Edit");
         jMenuBar2.add(jMenu5);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(984, 680));
         setResizable(false);
@@ -443,9 +443,12 @@ public class FrenteCaixa extends javax.swing.JFrame {
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         c.inicializar(true);
         config.tela("Cliente", c);
-        lblSetCodigo.setText(c.cliente.getCod());
-        lblSetNome.setText(c.cliente.getNome());
-        atd.setCliente(c.cliente.getCod());
+        if(c.cancelar){
+            lblSetCodigo.setText(c.cliente.getCod());
+            lblSetNome.setText(c.cliente.getNome());
+            atd.setCliente(c.cliente.getCod());
+            c.cancelar=false;
+        }
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
@@ -458,14 +461,18 @@ public class FrenteCaixa extends javax.swing.JFrame {
                 Pagamento p = new Pagamento(null, true);
                 p.setAtendiemnto(atd);   
                 config.tela("Pagamento", p);
-//                if(){//pra ver se foi cancelado o pagamento ou não
-
+                if(p.cancelar){//pra ver se foi cancelado o pagamento ou não
                     criarTabela.limparTabela(tblCarrinho, nomes, txtTotais);
-                    atd.inserirBD();
+                    try {
+                        atd.id_atendimentoBD();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FrenteCaixa.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     atd.construtor();
                     lblSetCodigo.setText("0000000");
                     lblSetNome.setText("xxxxxxx xxxxxxx xxxxxx");
-//                }
+                    p.cancelar = false;
+                }
                 
             }           
            

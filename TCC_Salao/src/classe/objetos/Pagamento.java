@@ -1,5 +1,6 @@
 package classe.objetos;
 
+import ClasseBD.ConexaoBD;
 import Enum.TiposPagamento;
 
 public class Pagamento {
@@ -32,11 +33,15 @@ public class Pagamento {
     }    
     ///////////////////////////////C\BD//////////////////////////////
     //inserir
-    public boolean inserirBD(String id_atendimento){
-        System.out.println(this.id_TipoPagamento);
-        System.out.println(this.vl_Pagamento);
-        System.out.println(id_atendimento);
-        return false;
+    public String inserirPagamentoBD(String id_atendimento){
+         //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO pagamentos (id_atendimento, id_tipo_pagamento, vl_pagamento) ";
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ id_atendimento +"','"+ getPagamento() +"','"+ getValor() +"')";
+        //teste
+//        System.out.println(q+a);
+        ConexaoBD.executar(q+a);
+        return q+a;
     }
     //excluir
     public boolean buscarBD(){

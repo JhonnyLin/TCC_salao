@@ -18,9 +18,30 @@ CREATE TABLE `salao_bd`.`usuario` (
   PRIMARY KEY (`id_usuario`));
 /////////////////////////////////////////////////////
 CREATE TABLE `salao_bd`.`movimento` (
-  `id_movimento` INT NOT NULL AUTO_INCREMENT,
-  `id_usuario` INT NULL,
-  `id_tipo_movimento` INT NULL,
-  `vl_movimento` DECIMAL(6) NULL,
-  PRIMARY KEY (`id_movimento`));
+  `idmovimento` INT NOT NULL AUTO_INCREMENT,
+  `id_User` INT NULL,
+  `ds_Tipo_movimento` VARCHAR(10) NULL,
+  `vl_Movimento` DOUBLE NULL,
+  PRIMARY KEY (`idmovimento`));
+/////////////////////////////////////////////////////
+CREATE TABLE `salao_bd`.`item_atendimento` (
+  `iditem_atendimento` INT NOT NULL AUTO_INCREMENT,
+  `id_atendimento` INT NULL,
+  `id_servProd` INT NULL,
+  `qt_vendida` INT NULL,
+  `vl_item` DOUBLE NULL,
+  PRIMARY KEY (`iditem_atendimento`));
+/////////////////////////////////////////////////////
+CREATE TABLE `salao_bd`.`atendimento` (
+  `idatendimento` INT NOT NULL AUTO_INCREMENT,
+  `id_cliente` INT NULL,
+  `vl_total` DOUBLE NULL,
+  PRIMARY KEY (`idatendimento`));
+/////////////////////////////////////////////////////
+CREATE TABLE `salao_bd`.`pagamentos` (
+  `id_pagamentos` INT NOT NULL AUTO_INCREMENT,
+  `id_atendimento` INT NULL,
+  `id_tipo_pagamento` VARCHAR(8) NULL,
+  `vl_pagamento` DOUBLE NULL,
+  PRIMARY KEY (`id_pagamentos`));
 /////////////////////////////////////////////////////

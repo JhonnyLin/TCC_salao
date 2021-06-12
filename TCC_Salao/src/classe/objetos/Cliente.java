@@ -67,6 +67,13 @@ public class Cliente {
         System.out.println(q+a);
         return q+a;
     }
+    
+    public String pesquisaCli(String texto, String campo){
+        String q = "SELECT * FROM cliente WHERE  ";
+        String query = q+campo+"= '"+texto+"'";
+        return query;
+    }
+    
     //verifica existencia
     public boolean existe(){
         return false;

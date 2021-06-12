@@ -1,5 +1,7 @@
 package classe.objetos;
 
+import ClasseBD.ConexaoBD;
+
 
 
 public class Item {
@@ -74,8 +76,15 @@ public class Item {
       
     ///////////////////////////////C\BD///////////////////////////////
     //Inserir banco
-    public boolean inserirBD(){
-        return false;
+    public String inserirAtendimentoBD(String id_atendimento, int quantidade){
+        //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO item_atendimento (id_atendimento, id_servProd, qt_vendida, vl_item)";
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ id_atendimento +"','"+ getCodigo() +"','"+ quantidade +"','"+ getValor()+"')";
+        //teste
+//        System.out.println(q+a);
+        ConexaoBD.executar(q+a);
+        return q+a;
     }
     //Atualizar banco
     public boolean atualizarBD(){

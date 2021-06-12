@@ -10,6 +10,7 @@ public class Pagamento extends javax.swing.JDialog {
     private Imagens imge;
     private Atendimento atendimento;
     private boolean x;
+    boolean cancelar = false;
     
     public Pagamento(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -113,7 +114,7 @@ public class Pagamento extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxTotalActionPerformed
 
     private void btnFiadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiadoActionPerformed
-        JOptionPane.showMessageDialog(null, "Modulo não ativo");
+        pag(TiposPagamento.FIADO);
     }//GEN-LAST:event_btnFiadoActionPerformed
 
     private void btnDinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDinheiroActionPerformed
@@ -164,12 +165,18 @@ public class Pagamento extends javax.swing.JDialog {
         });
     }
     public void pag(TiposPagamento tp){
-        String x = atendimento.pagamento(tp, Double.parseDouble(txtValor.getText()));
-        txtValor.setText(""+x);
-        configinicializacao();
-        if(x.equals("0.0")){
-            dispose();
+        if(Double.parseDouble(txtValor.getText())>0){
+            String x = atendimento.pagamento(tp, Double.parseDouble(txtValor.getText()));
+            txtValor.setText(""+x);
+            configinicializacao();
+            if(x.equals("0.0")){
+                cancelar = true;
+                dispose();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Por favor, digite um valor maior que 0(ZERO)");
         }
+        
     }
     
     //insere o valor no campo

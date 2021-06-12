@@ -2,6 +2,7 @@ package classe.objetos;
 
 import Enum.TiposMovimento;
 import Telas.FrenteCaixa;
+import Telas.Resultado;
 import classe.genericas.Configuracao;
 import classe.negocios.Inicializacao;
 import javax.swing.JOptionPane;
@@ -10,20 +11,24 @@ public class Movimento {
     private TiposMovimento id_Tipo_movimento;
     private Inicializacao inicializacao;
     private String valor;
-    private String atendente;
-    private Configuracao config = new Configuracao();
-    private FrenteCaixa frm = new FrenteCaixa();
+    private int atendente;
+    private Configuracao config;
+    private FrenteCaixa frm;
     
-    public Movimento(TiposMovimento id_Tipo_movimento, Inicializacao inicializacao){
+    public Movimento(TiposMovimento id_Tipo_movimento, Inicializacao inicializacao, int atendente, String valor){
         this.id_Tipo_movimento = id_Tipo_movimento;
         this.inicializacao = inicializacao;
+        this.atendente = atendente;
+        this.valor = valor;
+        this.config = new Configuracao();
+        this.frm =  new FrenteCaixa();
    }
     ///////////////////////////////SET///////////////////////////////
     public boolean setTipo(TiposMovimento indice){
         this.id_Tipo_movimento = indice;
         return true;
     }
-    public void addVA(String valor, String atendente){
+    public void addVA(String valor, int atendente){
         this.atendente = atendente;
         this.valor = valor;
     }
@@ -34,19 +39,20 @@ public class Movimento {
     public String getValor(){
         return this.valor;
     }
-    public String getAtendente(){
+    public int getAtendente(){
          return this.atendente;
      }
     ///////////////////////////////EXP///////////////////////////////
-    public void operacao(String valor, String atendente){
+    public void operacao(){
         switch(this.id_Tipo_movimento){
             case ABERTURA:
-                addVA(valor, atendente);
                 if(inicializacao.getAberto()){//troco
-                    inicializacao.setTroco(valor);
+                    inserirMov();
+                    inicializacao.setTroco(this.valor);
                     JOptionPane.showMessageDialog(null, "Troco adicionado ao caixa");
                 }else{ //inicializa
-                    if(inicializacao.Inicializar(atendente, valor)){
+                    if(inicializacao.Inicializar(this.valor)){
+                        inserirMov();
                         JOptionPane.showMessageDialog(null, "Caixa aberto");
                         config.tela("Frente de Caixa", frm);  
                     }else{
@@ -56,11 +62,11 @@ public class Movimento {
                 break;
             case SAQUE:
                 if(inicializacao.getAberto()){//cx aberto
-                    if(JOptionPane.showConfirmDialog(null,"Atendente: "+ atendente+". \n Valor: "+valor,
+                    if(JOptionPane.showConfirmDialog(null,"Atendente: "+ atendente+". \n Valor: "+this.valor,
                             "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
-                        if(inicializacao.delValor(valor)){
+                        if(inicializacao.delValor(this.valor)){
                             JOptionPane.showMessageDialog(null, "retirada ok"); 
-                            addVA(valor, atendente);
+                            inserirMov();
                         }else{
                             JOptionPane.showMessageDialog(null, "Valor maior que o saldo em caixa");
                         }
@@ -73,10 +79,13 @@ public class Movimento {
                 break;
             case FECHAMENTO:
                 if(inicializacao.getAberto()){ //cx aberto
-                    if(JOptionPane.showConfirmDialog(null,"Atendente: "+ atendente+". \n Valor: "+valor,
-                            "Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
-                        if(!inicializacao.fechar(valor)){
-                            addVA(valor, atendente); 
+                    Resultado resultado = new Resultado(null, true);
+                    resultado.config(inicializacao, this.valor);
+                    config.tela("Resultado", resultado);
+                    if(resultado.confirmar){
+                        if(!inicializacao.fechar(this.valor)){
+                                inserirMov();
+                            frm.dispose();//fechar a pg
                         }else{
                             JOptionPane.showMessageDialog(null, "Operação Cancelada");
                         }
@@ -91,17 +100,24 @@ public class Movimento {
         }
     }
     
-    ///////////////////////////////C\BD//////////////////////////////
-    //inserir
-    public boolean inserir(){
-        return false;
+//    ///////////////////////////////C\BD//////////////////////////////
+//    //inserir
+    public String inserirMov(){
+        //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO movimento (id_User,ds_Tipo_movimento,vl_Movimento) ";
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ this.atendente +"','"+ this.id_Tipo_movimento +"','"+ this.valor+"')";
+        //teste
+        System.out.println(q+a);
+        return q+a;
     }
-    //consultar
-    public boolean consultar(){
-        return false;
-    }
-    //excluir
-    public boolean excluir(){
-        return false;
-    }
+    
+//    //consultar
+//    public boolean consultar(){
+//        return false;
+//    }
+//    //excluir
+//    public boolean excluir(){
+//        return false;
+//    }
 }

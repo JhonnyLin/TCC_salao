@@ -100,7 +100,7 @@ public class AbrirCaixa extends javax.swing.JDialog {
     Inicializacao inicializacao = new Inicializacao();
     Movimento mvm ;
     TiposMovimento tipo;
-    Limpeza limp = new Limpeza();
+    
     private void cbxAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAtendenteActionPerformed
       
     }//GEN-LAST:event_cbxAtendenteActionPerformed
@@ -112,17 +112,18 @@ public class AbrirCaixa extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         switch(this.getTitle()){
             case "Abrir Caixa":
-                mvm = new Movimento(tipo.ABERTURA, inicializacao);
+                mvm = new Movimento(tipo.ABERTURA, inicializacao, cbxAtendente.getSelectedIndex(), mscValor.getText());
                 break;
             case "Retirada":
-                mvm = new Movimento(tipo.SAQUE, inicializacao);
+                mvm = new Movimento(tipo.SAQUE, inicializacao, cbxAtendente.getSelectedIndex(), mscValor.getText());
                 break;
             case "Fechar Caixa":
-                mvm = new Movimento(tipo.FECHAMENTO, inicializacao);
+                mvm = new Movimento(tipo.FECHAMENTO, inicializacao,  cbxAtendente.getSelectedIndex(), mscValor.getText());
                 break;
             default: System.out.println("Default");    
         }
-        mvm.operacao(mscValor.getText(), cbxAtendente.getItemAt(cbxAtendente.getSelectedIndex()));
+        mvm.operacao();
+        Limpeza limp = new Limpeza();
         limp.limpezaCampo(mscValor);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

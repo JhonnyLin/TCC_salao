@@ -1,8 +1,11 @@
 package classe.objetos;
 
+import ClasseBD.ConexaoBD;
 import Enum.TiposPagamento;
 import classe.genericas.Tabela;
 import classe.objetos.Item;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -39,6 +42,7 @@ public class Atendimento {
     public Double subTotal(double valor){
         return this.total = this.total - valor;
     }
+    
     public void construtor(){
         this.item = new ArrayList<Item>();
         this.qntd = new ArrayList<Integer>();
@@ -103,11 +107,6 @@ public class Atendimento {
         }
         somaTotal(servProd.getValor());
     }
-      
-    //Excluir item e sub(V2)
-//    public void exclui(Item servProd){
-//        this.item.remove(servProd);
-//    }
     
     //contem item na lista?
     public int contains(ArrayList<Item> list, Item cod){
@@ -122,17 +121,35 @@ public class Atendimento {
     
     ///////////////////////////////C\BD//////////////////////////////
     //Inserir
-    public String id_atendimentoBD(){
-        return "";
+    public String id_atendimentoBD() throws SQLException{
+         //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO atendimento (id_cliente, vl_total) ";
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ getIdCliente() +"','"+ getTotal()+"')";
+        //teste
+//        System.out.println(q+a);
+        ConexaoBD.executar(q+a);
+        ResultSet rs = ConexaoBD.rsexecutar( "SELECT last_insert_id()");
+        rs.next();
+        inserirItemBD(rs.getString(1));
+        inserirPagamentoBD(rs.getString(1));
+        return rs.getString(1);
     }
-    public void inserirBD(){
+    
+    public void inserirPagamentoBD(String id){
         //falta inserir atendimento
-        for(Pagamento p : pagamento){
-                p.inserirBD("teste");
+        for(Pagamento p : this.pagamento){
+                p.inserirPagamentoBD(id);
         }
     }
     
-    //Excluir
-    
-    
+    public void inserirItemBD(String id){
+        //falta inserir atendimento
+        int x = 0;
+        for(Item item : this.item){
+            item.inserirAtendimentoBD(id, this.qntd.get(x));
+            x++;
+        }
+    }
+   
 }

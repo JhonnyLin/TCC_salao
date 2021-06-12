@@ -15,10 +15,10 @@ public class Cliente extends javax.swing.JDialog {
         initComponents();
         inserirImg();
     }
-    Imagens imge = new Imagens();
-    String texto;
+    private Imagens imge = new Imagens();
+    private String texto;
     classe.objetos.Cliente cliente;
-    
+    boolean cancelar = false;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,10 +51,7 @@ public class Cliente extends javax.swing.JDialog {
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 485));
         setMinimumSize(new java.awt.Dimension(600, 485));
-        setPreferredSize(new java.awt.Dimension(600, 485));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -245,21 +242,21 @@ public class Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPesqTelActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        cancelar = false;
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
        // SE for cadastro
-        // if(true){
+         if(this.getTitle().equals("Cadastrar Cliente")){
+            cliente = new classe.objetos.Cliente("-1", txtNmCliente.getText() ,mcrTelClente.getText(),
+                                                 txtEmaiCliente.getText(), atxEndCliente.getText(), ""+rbtFeminino.isSelected());
             cliente.inserirCli();
-        //}else{
-            
-        //}
+        }else{
+            cancelar = true;
+            dispose();
+        }
 
-          
-//        inicializar(true);ConexaoBD.executar(query);
-//        JOptionPane.showMessageDialog(null, "Inserindo no banco.");
-        
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
