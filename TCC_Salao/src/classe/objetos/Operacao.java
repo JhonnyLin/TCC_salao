@@ -1,72 +1,60 @@
 package classe.objetos;
 
+import ClasseBD.ConexaoBD;
+import Enum.TiposOperacoes;
+
 public class Operacao {
-    private int tipoOperacoes;
-    private int codOperacao;
-    private int usuario;
+    private TiposOperacoes tOp;
+    private String codOperacao;
     //tentar passar uma unica string
     private String data;
-    private String hora;
     
-    public Operacao(int tipoOperacoes, int codOperacao,int usuario, String data ,String hora){
-        this.tipoOperacoes = tipoOperacoes;
+    public Operacao(TiposOperacoes tOp, String codOperacao, String data ){
+        this.tOp = tOp;
         this.codOperacao = codOperacao;
-        this.usuario = usuario;
         this.data = data;
-        this.hora = hora;
     }
     
     ///////////////////////////////SET///////////////////////////////
-    public boolean tipOperacoes(int indice){
-        this.tipoOperacoes = indice;
+    public boolean setTipOperacoes(TiposOperacoes indice){
+        this.tOp = indice;
         return false;
     }
-    public boolean codOperacao(int indice){
+    public boolean setCodOperacao(String indice){
         this.codOperacao = indice;
         return false;
     }
-    public boolean usuario(int indice){
-        this.usuario = indice;
-        return false;
-    }
-    public boolean data(String data){
+    public boolean setData(String data){
         this.data = data;
-        return false;
-    }
-    public boolean hora(String hora){
-        this.hora = hora;
         return false;
     }
     
     ///////////////////////////////GET///////////////////////////////
-    public int tipOperacoes(){
-        return this.tipoOperacoes;
+    public TiposOperacoes getTipOperacoes(){
+        return this.tOp;
     }
-    public int codOperacao(){
+    public String getCodOperacao(){
         return this.codOperacao;
     }
-    public int usuario(){
-        return this.usuario;
-    }
-    public String data(){
+    public String getData(){
         return this.data;
-    }
-    public String hora(){
-       return this.hora;
     }
     ///////////////////////////////EXP///////////////////////////////
     
     ///////////////////////////////C\BD//////////////////////////////
     //inserir
-    public boolean inserir(){
-        return false;
+    public String inserir(){
+        //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO operacoes (id_tipo_operacao, id_vinculado, dt_operacao) ";
+        //colocando as variaveis na quary
+        String a = "VALUES('"+ getTipOperacoes()+"','"+getCodOperacao()+"','"+ getData()+"')";
+//        System.out.println(q+a);
+        ConexaoBD.executar(q+a);
+        return q+a;
     }
+    
     //alterar
     public boolean alterar(){
-        return false;
-    }
-    //excluir
-    public boolean excluir(){
         return false;
     }
 }

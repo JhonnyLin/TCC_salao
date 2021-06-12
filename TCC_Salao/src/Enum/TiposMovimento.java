@@ -1,5 +1,5 @@
 package Enum;
 
 public enum TiposMovimento {
-    ABERTURA, FECHAMENTO, SAQUE;
+    ABERTURA,DEPOSITO, FECHAMENTO, SAQUE;
 }

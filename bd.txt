@@ -45,3 +45,8 @@ CREATE TABLE `salao_bd`.`pagamentos` (
   `vl_pagamento` DOUBLE NULL,
   PRIMARY KEY (`id_pagamentos`));
 /////////////////////////////////////////////////////
+CREATE TABLE `salao_bd`.`operacoes` (
+  `id_operacoes` INT NOT NULL AUTO_INCREMENT,
+  `id_tipo_operacao` VARCHAR(9) NULL,
+  `dt_operacao` VARCHAR(8) NULL,
+  PRIMARY KEY (`id_operacoes`));

@@ -1,6 +1,7 @@
 package classe.objetos;
 
 import ClasseBD.ConexaoBD;
+import Enum.TiposOperacoes;
 import Enum.TiposPagamento;
 import classe.genericas.Tabela;
 import classe.objetos.Item;
@@ -133,6 +134,8 @@ public class Atendimento {
         rs.next();
         inserirItemBD(rs.getString(1));
         inserirPagamentoBD(rs.getString(1));
+        Operacao op = new Operacao(TiposOperacoes.CREDITO, rs.getString(1) ,"data");
+        op.inserir();
         return rs.getString(1);
     }
     

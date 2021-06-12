@@ -2,10 +2,13 @@ package classe.objetos;
 
 import ClasseBD.ConexaoBD;
 import Enum.TiposMovimento;
+import Enum.TiposOperacoes;
 import Telas.FrenteCaixa;
 import Telas.Resultado;
 import classe.genericas.Configuracao;
 import classe.negocios.Inicializacao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Movimento {
@@ -44,10 +47,11 @@ public class Movimento {
          return this.atendente;
      }
     ///////////////////////////////EXP///////////////////////////////
-    public void operacao(){
+    public void operacao() throws SQLException{
         switch(this.id_Tipo_movimento){
             case ABERTURA:
                 if(inicializacao.getAberto()){//troco
+                    id_Tipo_movimento = id_Tipo_movimento.DEPOSITO;
                     inserirMov();
                     inicializacao.setTroco(this.valor);
                     JOptionPane.showMessageDialog(null, "Troco adicionado ao caixa");
@@ -103,15 +107,21 @@ public class Movimento {
     
 //    ///////////////////////////////C\BD//////////////////////////////
 //    //inserir
-    public String inserirMov(){
+    public String inserirMov() throws SQLException{
+        
         //definindo a tabela e os campos para inserir
         String q = "INSERT INTO movimento (id_User,ds_Tipo_movimento,vl_Movimento) ";
         //colocando as variaveis na quary
         String a = "VALUES('"+ this.atendente +"','"+ this.id_Tipo_movimento +"','"+ this.valor+"')";
         //teste
-        System.out.println(q+a);
+//        System.out.println(q+a);
         ConexaoBD.executar(q+a);
-        return q+a;
+        ResultSet rs = ConexaoBD.rsexecutar( "SELECT last_insert_id()");
+        rs.next();
+        Operacao op = new Operacao(TiposOperacoes.MOVIMENTO, rs.getString(1), "data");
+        op.inserir();
+        return "";
+        
     }
 
 }
