@@ -1,11 +1,14 @@
 package Telas;
 
-public class AbertoUser extends javax.swing.JInternalFrame {
+import classe.genericas.Configuracao;
 
+public class AbertoUser extends javax.swing.JInternalFrame {
+    private Configuracao config = new Configuracao();
+    private CadUser  cu = new CadUser(null, closable);
     public AbertoUser() {
         initComponents();       
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,6 +57,11 @@ public class AbertoUser extends javax.swing.JInternalFrame {
         jScrollPane1.setBounds(20, 39, 490, 390);
 
         btnNovo.setText("Novo");
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnNovo);
         btnNovo.setBounds(530, 360, 110, 31);
 
@@ -126,6 +134,10 @@ public class AbertoUser extends javax.swing.JInternalFrame {
     private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        config.tela("Cadastro Usuario", cu);
+    }//GEN-LAST:event_btnNovoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

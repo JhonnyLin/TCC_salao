@@ -1,5 +1,6 @@
 package classe.objetos;
 
+import ClasseBD.ConexaoBD;
 import Enum.TiposMovimento;
 import Telas.FrenteCaixa;
 import Telas.Resultado;
@@ -109,15 +110,8 @@ public class Movimento {
         String a = "VALUES('"+ this.atendente +"','"+ this.id_Tipo_movimento +"','"+ this.valor+"')";
         //teste
         System.out.println(q+a);
+        ConexaoBD.executar(q+a);
         return q+a;
     }
-    
-//    //consultar
-//    public boolean consultar(){
-//        return false;
-//    }
-//    //excluir
-//    public boolean excluir(){
-//        return false;
-//    }
+
 }
