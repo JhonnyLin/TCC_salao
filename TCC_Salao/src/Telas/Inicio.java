@@ -1,11 +1,7 @@
 package Telas;
 
-import lixo.Usuario;
-import lixo.Agendamento;
 import ClasseBD.ConexaoBD;
 import classe.genericas.Configuracao;
-import java.sql.SQLException;
-
 public class Inicio extends javax.swing.JFrame {
     
     public Inicio(){
@@ -23,8 +19,8 @@ public class Inicio extends javax.swing.JFrame {
     Fornecedor fornecedor = new Fornecedor(null, true);
     Pedidos pedido = new Pedidos(); 
     ConexaoBD conexao = new ConexaoBD();
-    Usuario usuario = new Usuario();
-    Agendamento agendamento = new Agendamento();
+//    Usuario usuario = new Usuario();
+//    Agendamento agendamento = new Agendamento();
     Abertos abertos = new Abertos();
     AbertoAgendamento openAgend = new AbertoAgendamento();
     AbertoUser openUser = new AbertoUser();
@@ -388,7 +384,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-       config.tela("Pedidos",pedido, desktop);
+        pedido.opCompra(false);
+        config.tela("Pedidos",pedido, desktop);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
@@ -437,6 +434,8 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
     }
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Abrir;

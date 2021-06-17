@@ -38,7 +38,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnComprar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         lblSetNome = new javax.swing.JLabel();
@@ -116,9 +116,9 @@ public class Pedidos extends javax.swing.JInternalFrame {
         getContentPane().add(jButton4);
         jButton4.setBounds(600, 390, 90, 23);
 
-        jButton5.setText("Comprar");
-        getContentPane().add(jButton5);
-        jButton5.setBounds(600, 150, 90, 23);
+        btnComprar.setText("Comprar");
+        getContentPane().add(btnComprar);
+        btnComprar.setBounds(600, 150, 90, 23);
 
         jLabel5.setText("Produtos:");
         getContentPane().add(jLabel5);
@@ -153,19 +153,24 @@ public class Pedidos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        System.out.println(""+jTable1.getSelectedRow());
+        System.out.println(""+jTable1.getSelectedRow());
         int x = jTable1.getSelectedRow();
-        tabela.excluir(x);
+        if(x > 0){
+            tabela.excluir(x);
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione algum produto");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        Limpar();
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         fornecedor.orcamento();        
         config.tela("Orçamento Fornecedor", fornecedor);
-        if(!fornecedor.fornec.equals(null)){
+        if(fornecedor.x){
             fornec = fornecedor.fornec;
             lblSetNome.setText(fornec.nome());
             lblSetEmail.setText(fornec.getEmail());
@@ -173,12 +178,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
             lblSetTel.setText(fornec.getTelefone());
             pedidoC.setIDFornecedor(fornec.getCod());
         }else{
+            Limpar();
             JOptionPane.showMessageDialog(null, "Sem Fornecedor");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ConexaoBD.connect();
+        buscasp.confgOrcamento();
         config.tela("Produtos Orçamento", buscasp);
         ConexaoBD.desconnect();
         if(!buscasp.x){
@@ -195,13 +202,19 @@ public class Pedidos extends javax.swing.JInternalFrame {
         if(pedidoC.getIdForncedor().equals("")){
             JOptionPane.showMessageDialog(null, "Favor colocar um fornecedor!");
         }else{
-            try {
-                ConexaoBD.connect();
-                pedidoC.inserirPedidoCompraBD();
-                pedidoC.inserirItemOrcamento();
-                ConexaoBD.desconnect();
-            } catch (SQLException ex) {
-                Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
+            if(jTable1.getRowCount()== 0){
+                JOptionPane.showMessageDialog(null, "Favor Adicionar Produto!");
+            }else{
+//                try {
+//                    ConexaoBD.connect();
+//                    pedidoC.inserirPedidoCompraBD();
+//                    pedidoC.inserirItemOrcamento();
+//                    ConexaoBD.desconnect();
+                    Limpar();
+                    tabela.limparTabela(jTable1, nomesS);
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
+//                }
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -213,14 +226,18 @@ public class Pedidos extends javax.swing.JInternalFrame {
         lblSetTel.setText("(XX) XXX-XXX-XXX");
         fornec = null;
     }
+    
+    public void opCompra(boolean on){
+        btnComprar.setVisible(on);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnComprar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

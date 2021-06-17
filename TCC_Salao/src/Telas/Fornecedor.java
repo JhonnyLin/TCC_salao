@@ -16,7 +16,7 @@ public class Fornecedor extends javax.swing.JDialog {
         initComponents();
         inserirImg();
     }
-
+    boolean x = false;
     String a;
     Configuracao config = new Configuracao();
     classe.objetos.Fornecedor fornec;
@@ -244,13 +244,8 @@ public class Fornecedor extends javax.swing.JDialog {
             ConexaoBD.executar(query);
             JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado!");
         }else if(this.getTitle().equals("Orçamento Fornecedor")){
-            JOptionPane.showMessageDialog(null, "teste orçamento");
+            x = true;
         }
-//        else if(this.getTitle().equals("Buscar Fornecedor")){
-//            JOptionPane.showMessageDialog(null, "teste buscar serviço");
-//        }else if(this.getTitle().equals("Orçamento Fornecedor")){
-//            JOptionPane.showMessageDialog(null, "teste orçamento");
-//        }
         dispose();
         limparCampos();
     }//GEN-LAST:event_btnEnviarActionPerformed

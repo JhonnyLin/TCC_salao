@@ -188,10 +188,8 @@ public class BuscaSP extends javax.swing.JDialog {
             x = false;
         }else if(this.getTitle().equals("Bucar Serviço ou Produto")){
             codSP = tabela.getCod(tblServProd.getSelectedRow());
+             x = true;
         }
-//        else if(this.getTitle().equals("Bucar Serviço ou Produto")){
-//            x = true;
-//        }        
         dispose();        
     }//GEN-LAST:event_btnEnviarActionPerformed
 
@@ -261,7 +259,12 @@ public class BuscaSP extends javax.swing.JDialog {
         int x = tblServProd.getSelectedRow();
         item = new ItemOrcamento(""+tblServProd.getValueAt(x, 0), ""+tblServProd.getValueAt(x, 2));
     }
-   
+    public void confgOrcamento(){
+        rbnProd.setSelected(true);
+        tabela.criarTabelas(tblServProd, camposProdBD, tabelaBD, 0, nomesP);
+        rbnServ.setVisible(false);
+    }
+    
     public void configPruduto(){
         rbnProd.setSelected(true);
         tabela.criarTabelas(tblServProd, camposProdBD, tabelaBD, 0, nomesP);

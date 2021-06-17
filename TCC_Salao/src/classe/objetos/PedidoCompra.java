@@ -51,15 +51,10 @@ public class PedidoCompra {
         String a = "VALUES('"+ getIdForncedor() +"','"+ getData() +"')";
 //        System.out.println(q+a);
         ConexaoBD.executar(q+a);
+        //Devolver a ultima operação no banco
         ResultSet rs = ConexaoBD.rsexecutar( "SELECT last_insert_id()");
         rs.next();
-        //System.out.println(rs.getString(1));
         id_Pedido_Compra = rs.getString(1);
-//        inserirItemBD(rs.getString(1));
-//        inserirPagamentoBD(rs.getString(1));
-//        Operacao op = new Operacao(TiposOperacoes.CREDITO, rs.getString(1) ,"data");
-//        op.inserir();
-//        return rs.getString(1);//RETORNA INDICE 
     }
     
     public void inserirItemOrcamento() throws SQLException{

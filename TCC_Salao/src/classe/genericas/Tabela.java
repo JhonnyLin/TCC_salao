@@ -66,24 +66,11 @@ public class Tabela {
         criarTabelas(jTabela, nomes);
         txt.setText("");
     }
-    
-//    private void somaTotal(JTextField txt){
-//        double b = 0;
-//        for(int i = 0; i<dtm.getRowCount(); i++){
-//            String a = dtm.getValueAt(i, 4).toString();
-//            double c = Double.parseDouble(a);
-//            b = b + c;
-//            txt.setText(""+b);
-//        }
-//    }
-//    
-//    private void valorQt(int i){
-//        double c = Double.parseDouble(dtm.getValueAt(i, 3).toString());
-//        double b = Double.parseDouble(dtm.getValueAt(i, 2).toString());
-//        b = b * c;
-//        dtm.setValueAt(b, i, 4);
-//    }
-    
+    public void limparTabela(JTable jTabela, String nomes[]){
+        dtm = new DefaultTableModel();
+        criarTabelas(jTabela, nomes);
+    }
+
     public boolean inserirItem(Item item){
         String [] row = new String[5];
         row[0] = item.getCodigo();

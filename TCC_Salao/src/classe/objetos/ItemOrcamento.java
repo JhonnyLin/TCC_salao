@@ -11,7 +11,7 @@ public class ItemOrcamento {
     
     public ItemOrcamento(String codItem, String nomeItem){
         this.codItem = codItem;
-//        this.nomeItem = nomeItem;
+        this.nomeItem = nomeItem;
     }
     ///////////////////////////SET/////////////////////////////
     public void setCodItem(String codItem){
