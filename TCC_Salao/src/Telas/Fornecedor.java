@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 public class Fornecedor extends javax.swing.JDialog {
 
     public Fornecedor(java.awt.Frame parent, boolean modal) {
@@ -20,6 +19,7 @@ public class Fornecedor extends javax.swing.JDialog {
 
     String a;
     Configuracao config = new Configuracao();
+    classe.objetos.Fornecedor fornec;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -45,12 +45,10 @@ public class Fornecedor extends javax.swing.JDialog {
         btnPesqNome = new javax.swing.JButton();
         mcrCNPJ = new javax.swing.JFormattedTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblOrcamento = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 525));
         setMinimumSize(new java.awt.Dimension(1000, 525));
-        setPreferredSize(new java.awt.Dimension(1000, 525));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -177,7 +175,7 @@ public class Fornecedor extends javax.swing.JDialog {
         getContentPane().add(mcrCNPJ);
         mcrCNPJ.setBounds(35, 150, 320, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOrcamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -185,7 +183,7 @@ public class Fornecedor extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblOrcamento);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(450, 30, 520, 440);
@@ -195,7 +193,7 @@ public class Fornecedor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        inicializar(false);
+        novo();
         limparCampos();
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -203,7 +201,9 @@ public class Fornecedor extends javax.swing.JDialog {
         a = txtCodFornecedor.getText();
         String query = pesquisaForn(a,"idfornecedor");
         try {
+            ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -213,7 +213,9 @@ public class Fornecedor extends javax.swing.JDialog {
         a = mcrCNPJ.getText();
         String query = pesquisaForn(a,"cd_CNPJ");
         try {
+            ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -223,7 +225,9 @@ public class Fornecedor extends javax.swing.JDialog {
         a = mcrTelFornecedor.getText();
         String query = pesquisaForn(a,"cd_Telefone");
         try {
+            ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -235,9 +239,19 @@ public class Fornecedor extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        String query = inserirForn();
-        ConexaoBD.executar(query);
-        JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado!");
+        if(this.getTitle().equals("Cadastrar Fornecedor")){
+            String query = inserirForn();
+            ConexaoBD.executar(query);
+            JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado!");
+        }else if(this.getTitle().equals("Orçamento Fornecedor")){
+            JOptionPane.showMessageDialog(null, "teste orçamento");
+        }
+//        else if(this.getTitle().equals("Buscar Fornecedor")){
+//            JOptionPane.showMessageDialog(null, "teste buscar serviço");
+//        }else if(this.getTitle().equals("Orçamento Fornecedor")){
+//            JOptionPane.showMessageDialog(null, "teste orçamento");
+//        }
+        dispose();
         limparCampos();
     }//GEN-LAST:event_btnEnviarActionPerformed
 
@@ -245,7 +259,9 @@ public class Fornecedor extends javax.swing.JDialog {
         a = txtNmFornecedor.getText();
         String query = pesquisaForn(a,"nm_Fornecedor");
         try {
+            ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -306,15 +322,21 @@ public class Fornecedor extends javax.swing.JDialog {
     }
     
     public void RetornarFornecedor(ResultSet rs ) throws SQLException{
-        while(rs.next()){
+        if(rs.next()){
+            fornec = new classe.objetos.Fornecedor(rs.getString(1), rs.getString(3), rs.getString(2), rs.getString(5), rs.getString(4), rs.getString(6));
             txtCodFornecedor.setText(rs.getString(1));
             txtNmFornecedor.setText(rs.getString(2));
             mcrCNPJ.setText(rs.getString(3));
             mcrTelFornecedor.setText(rs.getString(4));
             txtEmaiFornecedor.setText(rs.getString(5));
             atxEndFornecedor.setText(rs.getString(6));
+            btnEnviar.setEnabled(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Não Encontrado,\n tente por outro meio");
+            btnEnviar.setEnabled(false);
         }
     }
+    
     public String inserirForn(){
         //definindo a tabela e os campos para inserir
         String q = "INSERT INTO fornecedor (nm_Fornecedor, cd_CNPJ, cd_Telefone, ds_Email,ds_Endereco) ";
@@ -331,27 +353,48 @@ public class Fornecedor extends javax.swing.JDialog {
         
         return q+a;
     }
-    
-    public void inicializar(boolean psq){
-        txtCodFornecedor.setEnabled(psq);
-        btnAdd.setVisible(psq);
-        btnPesqCod.setVisible(psq);
-        btnPesqTel.setVisible(psq); 
-        if(psq){
-            txtEmaiFornecedor.setEnabled(false);
-            atxEndFornecedor.setEnabled(false);
-            btnEnviar.setText("Novo orçamento");
-            btnEnviar.setEnabled(false);
-            this.setTitle("Buscar Fornecedor");
-        }else{
-            txtEmaiFornecedor.setEnabled(true);
-            atxEndFornecedor.setEnabled(true);
-            btnEnviar.setText("Confirmar");
-            btnEnviar.setEnabled(true);
-            this.setTitle("Cadastrar Fornecedor");
-        }        
+    /////////////////////////////////////////////iniciar/////////////
+    public void novo(){
+        txtCodFornecedor.setEnabled(false);
+        txtEmaiFornecedor.setEnabled(true);
+        atxEndFornecedor.setEnabled(true);
+        btnAdd.setVisible(false);
+        btnPesqCod.setVisible(false);
+        btnPesqTel.setVisible(false);
+        btnPesqNome.setVisible(false);
+        btnPesqCNPJ.setVisible(false);
+        tblOrcamento.setEnabled(false);
+        btnEnviar.setText("Confirmar");     
     }
     
+    public void buscar(){
+        txtCodFornecedor.setEnabled(true);
+        txtEmaiFornecedor.setEnabled(false);
+        atxEndFornecedor.setEnabled(false);
+        btnPesqNome.setVisible(true);
+        btnPesqCNPJ.setVisible(true);
+        btnAdd.setVisible(true);
+        btnPesqCod.setVisible(true);
+        btnPesqTel.setVisible(true);
+        tblOrcamento.setEnabled(true);
+        btnEnviar.setEnabled(false);
+        btnEnviar.setText("Orçarmenro");     
+    } 
+    
+    public void orcamento(){
+        txtCodFornecedor.setEnabled(true);
+        txtEmaiFornecedor.setEnabled(false);
+        atxEndFornecedor.setEnabled(false);
+        btnAdd.setVisible(true);
+        btnPesqCod.setVisible(true);
+        btnPesqTel.setVisible(true);
+        btnPesqNome.setVisible(true);
+        btnPesqCNPJ.setVisible(true);
+        tblOrcamento.setEnabled(false);
+        btnEnviar.setEnabled(false);
+        btnEnviar.setText("Confirmar");      
+    }
+     
     public void inserirImg(){
         Imagens imge = new Imagens();
         JButton [] bntImg = {btnPesqCNPJ, btnPesqCod, btnPesqNome, btnPesqTel, btnAdd, btnEnviar, btnCancelar};
@@ -384,9 +427,9 @@ public class Fornecedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JFormattedTextField mcrCNPJ;
     private javax.swing.JFormattedTextField mcrTelFornecedor;
+    private javax.swing.JTable tblOrcamento;
     private javax.swing.JTextField txtCodFornecedor;
     private javax.swing.JTextField txtEmaiFornecedor;
     private javax.swing.JTextField txtNmFornecedor;

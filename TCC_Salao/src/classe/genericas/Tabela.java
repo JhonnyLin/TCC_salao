@@ -2,8 +2,8 @@ package classe.genericas;
 
 import ClasseBD.ConexaoBD;
 import classe.objetos.Item;
+import classe.objetos.ItemOrcamento;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -94,6 +94,23 @@ public class Tabela {
         dtm.addRow(row);
         return true;
     }
+    
+    public boolean inserirItem(ItemOrcamento itemO){
+        String [] row = new String[5];
+        row[0] = itemO.getCodItem(); //cod
+        row[1] = itemO.getNomeItem(); //nome
+        row[2] = itemO.getQntdItem();
+        row[3] = itemO.getVlUnitario(); //vl un
+        row[4] = ""+ Double.parseDouble(itemO.getVlUnitario()) * Double.parseDouble(itemO.getQntdItem()); //vl total
+        dtm.addRow(row);
+        return true;
+    }
+    
+    public boolean excluir(int x){
+        dtm.removeRow(x);
+        return true;
+    }
+    
     public boolean atualizarItem(int x){
         int qntd = Integer.parseInt((String) dtm.getValueAt(x, 2));
         Double valor = Double.parseDouble((String) dtm.getValueAt(x, 3));

@@ -1,14 +1,14 @@
 package classe.objetos;
 
 public class Fornecedor {
-    private int idFornecedor;
+    private String idFornecedor;
     private String CNPJ;
     private String nm_Fornecedor;
     private String ds_Email;
     private String cd_Telefone;    
     private String ds_Endereco;
     
-    public Fornecedor(int idCliente,String CNPJ, String nm_Fornecedor,String ds_Email, String cd_Telefone, String ds_Endereco){
+    public Fornecedor(String idFornecedor,String CNPJ, String nm_Fornecedor,String ds_Email, String cd_Telefone, String ds_Endereco){
         this.idFornecedor = idFornecedor;
         this.CNPJ = CNPJ;
         this.nm_Fornecedor = nm_Fornecedor;
@@ -18,7 +18,7 @@ public class Fornecedor {
     }
     
     ///////////////////////////////GET///////////////////////////////
-    public int getCod(){
+    public String getCod(){
         return this.idFornecedor;
     }
     public String nome(){

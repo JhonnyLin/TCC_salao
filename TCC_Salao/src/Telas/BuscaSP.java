@@ -1,8 +1,9 @@
 package Telas;
 
+import ClasseBD.ConexaoBD;
 import classe.genericas.Tabela;
 import classe.genericas.Imagens;
-import classe.*;
+import classe.objetos.ItemOrcamento;
 import javax.swing.JButton;
 
 public class BuscaSP extends javax.swing.JDialog {
@@ -11,10 +12,10 @@ public class BuscaSP extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         inserirImg();
+        conec.connect();
     }
-    
-    private Imagens imge = new Imagens();
-    
+    ConexaoBD conec = new ConexaoBD();
+    private Imagens imge = new Imagens();    
     private Tabela tabela = new Tabela();
     private String camposServBD = "cd_ServProd, nm_ServProd, ds_ServProd, vl_ServProd";
     private String camposProdBD = "cd_ServProd, qt_Prod,nm_ServProd, ds_ServProd, vl_ServProd";
@@ -22,7 +23,8 @@ public class BuscaSP extends javax.swing.JDialog {
     private String [] nomesS = {"Cód", "Nome", "Descrição", "Valor"};
     private String [] nomesP = {"Cód","Qntd", "Nome", "Descrição", "Valor"}; 
     public String codSP;
-    
+    public boolean x;
+    public ItemOrcamento item;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -181,8 +183,16 @@ public class BuscaSP extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPesqCodActionPerformed
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
-        codSP = tabela.getCod(tblServProd.getSelectedRow());
-        dispose();
+        if(this.getTitle().equals("Produtos Orçamento")){
+            criandoItemOrcamento();
+            x = false;
+        }else if(this.getTitle().equals("Bucar Serviço ou Produto")){
+            codSP = tabela.getCod(tblServProd.getSelectedRow());
+        }
+//        else if(this.getTitle().equals("Bucar Serviço ou Produto")){
+//            x = true;
+//        }        
+        dispose();        
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void rbnServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnServActionPerformed
@@ -191,6 +201,7 @@ public class BuscaSP extends javax.swing.JDialog {
     }//GEN-LAST:event_rbnServActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        x = false;
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -246,6 +257,11 @@ public class BuscaSP extends javax.swing.JDialog {
         });
     }
     //minhas classes
+    public void criandoItemOrcamento(){
+        int x = tblServProd.getSelectedRow();
+        item = new ItemOrcamento(""+tblServProd.getValueAt(x, 0), ""+tblServProd.getValueAt(x, 2));
+    }
+   
     public void configPruduto(){
         rbnProd.setSelected(true);
         tabela.criarTabelas(tblServProd, camposProdBD, tabelaBD, 0, nomesP);

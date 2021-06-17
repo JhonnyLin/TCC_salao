@@ -377,12 +377,12 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        fornecedor.inicializar(false);
+        fornecedor.novo();
         config.tela("Cadastrar Fornecedor", fornecedor);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        fornecedor.inicializar(true);
+        fornecedor.buscar();
         config.tela("Buscar Fornecedor", fornecedor);
         
     }//GEN-LAST:event_jMenuItem15ActionPerformed
