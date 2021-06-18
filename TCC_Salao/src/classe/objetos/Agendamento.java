@@ -1,5 +1,7 @@
 package classe.objetos;
 
+import ClasseBD.ConexaoBD;
+
 public class Agendamento {
     private String id_Agendamento;
     private String id_Cliente;
@@ -39,6 +41,9 @@ public class Agendamento {
         return true;
     }
     ///////////////////////////////GET///////////////////////////////
+    public String getIdAgendamento(){
+        return this.id_Agendamento;
+    }
     public String getCliente(){
         return id_Cliente;
     }
@@ -63,11 +68,18 @@ public class Agendamento {
         //definindo a tabela e os campos para inserir
         String q = "INSERT INTO agendamento (id_cliente, nm_atendente, dt_agendamento, hr_atendimento, ds_adendamento) ";
         String a = "VALUES('"+ getCliente() +"', '"+getAtendente() +"' ,'"+ getData()+"','"+ getHora() +"','"+ getDescricao() +"')";
+        ConexaoBD.connect();
+        ConexaoBD.executar(q+a);
+        ConexaoBD.desconnect();
         return q+a;
     }
     
     //excluir
     public boolean excluirBD() {
-        return false;
+        String query = "DELETE FROM `salao_bd`.`agendamento` WHERE (`id_agendamento` = '"+getIdAgendamento()+"')";
+        ConexaoBD.connect();
+        ConexaoBD.executar(query);
+        ConexaoBD.desconnect();
+       return false;
     }
 }

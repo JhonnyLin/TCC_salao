@@ -1,7 +1,9 @@
 package Telas;
 
+import ClasseBD.ConexaoBD;
 import classe.genericas.Configuracao;
 import classe.genericas.Tabela;
+import javax.swing.JOptionPane;
 
 public class AbertoAgendamento extends javax.swing.JInternalFrame {
 
@@ -99,7 +101,13 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendarActionPerformed
-        config.tela("Abrir Caixa", agendamento);
+        config.tela("Agendamento", agendamento);
+        ConexaoBD.connect();
+        agenda.limpar();
+        agenda.agendamento();
+        tb.limparTabela(tblAgenda, nomes);
+        agenda.insTb(tb);
+        ConexaoBD.desconnect();
         
     }//GEN-LAST:event_btnAgendarActionPerformed
 
@@ -108,8 +116,15 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        //passar indice pro excluir do agenda
-        agenda.exluirBD(tblAgenda.getSelectedRow());
+        if(tblAgenda.getSelectedRow()==-1){
+            JOptionPane.showMessageDialog(null, "Selecione o Agendamento");
+        }else{
+            if(JOptionPane.showConfirmDialog(null,"Excluir Agendamento?","Confirmação", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+                 agenda.exluirBD(tblAgenda.getSelectedRow());
+                 tb.limparTabela(tblAgenda, nomes);
+                 agenda.insTb(tb);
+            }
+        } 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     public void inicio(){

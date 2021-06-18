@@ -4,6 +4,9 @@ import Enum.TiposMovimento;
 import classe.negocios.Inicializacao;
 import classe.genericas.Limpeza;
 import classe.objetos.Movimento;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AbrirCaixa extends javax.swing.JDialog {
 
@@ -122,7 +125,11 @@ public class AbrirCaixa extends javax.swing.JDialog {
                 break;
             default: System.out.println("Default");    
         }
-        mvm.operacao();
+        try {
+            mvm.operacao();
+        } catch (SQLException ex) {
+            Logger.getLogger(AbrirCaixa.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Limpeza limp = new Limpeza();
         limp.limpezaCampo(mscValor);
         dispose();

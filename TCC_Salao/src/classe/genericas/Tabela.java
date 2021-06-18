@@ -186,6 +186,7 @@ public class Tabela {
         row[4] = agd.getDescricao();
         dtm.addRow(row);
     }
+    
     public String getCod(int linha){
         return (String) dtm.getValueAt(linha, 0);
     }

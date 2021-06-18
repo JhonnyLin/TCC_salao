@@ -11,7 +11,6 @@ public class Inicio extends javax.swing.JFrame {
 
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-//        conexao.connect();
     }
     //Chamadas (verificar se melhor usar uma inteface)
     Configuracao config = new Configuracao();
@@ -294,7 +293,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        servProd.inicializa(true);
+        servProd.inicializa(false);
         config.tela("Cadastrar Serviço ou Produto", servProd);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -326,7 +325,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        servProd.inicializa(false);
+        servProd.inicializa(true);
         config.tela("Cadastrar Serviço ou Produto", servProd);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 

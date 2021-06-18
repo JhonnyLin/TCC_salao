@@ -1,5 +1,6 @@
 package Telas;
 
+import ClasseBD.ConexaoBD;
 import classe.genericas.Tabela;
 
 public class Movimento extends javax.swing.JInternalFrame {
@@ -75,9 +76,11 @@ public class Movimento extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
     
-    public void buscarMovimento(){    
+    public void buscarMovimento(){
+        ConexaoBD.connect();
         String query = "SELECT dt_operacao, id_vinculado  FROM operacoes WHERE id_tipo_operacao= 'CREDITO'";
         tb.insMovimento(query, nomes.length);
+        ConexaoBD.desconnect();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

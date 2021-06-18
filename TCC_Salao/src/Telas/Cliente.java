@@ -47,7 +47,6 @@ public class Cliente extends javax.swing.JDialog {
         btnPesqTel = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
-        btnCancelar1 = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -186,15 +185,6 @@ public class Cliente extends javax.swing.JDialog {
         getContentPane().add(btnEnviar);
         btnEnviar.setBounds(220, 390, 130, 30);
 
-        btnCancelar1.setText("Historico");
-        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnCancelar1);
-        btnCancelar1.setBounds(40, 390, 130, 30);
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -215,7 +205,9 @@ public class Cliente extends javax.swing.JDialog {
         texto = txtCodCliente.getText();
         String query = pesquisaCli(texto,"idcliente");
         try {
+            ConexaoBD.connect();
             InserirCliente(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -225,7 +217,9 @@ public class Cliente extends javax.swing.JDialog {
         texto = txtNmCliente.getText();
         String query = pesquisaCli(texto,"nm_Cliente");
         try {
+            ConexaoBD.connect();
             InserirCliente(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -235,7 +229,9 @@ public class Cliente extends javax.swing.JDialog {
         texto = mcrTelClente.getText();
         String query = pesquisaCli(texto,"cd_Telefone");
         try {
+            ConexaoBD.connect();
             InserirCliente(ConexaoBD.rsexecutar(query));
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -258,10 +254,6 @@ public class Cliente extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnEnviarActionPerformed
-
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-    cliente.existe();
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,7 +382,6 @@ public class Cliente extends javax.swing.JDialog {
     private javax.swing.JTextArea atxEndCliente;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelar1;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnPesqCod;
     private javax.swing.JButton btnPesqNome;

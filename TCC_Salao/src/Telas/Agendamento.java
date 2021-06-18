@@ -17,7 +17,7 @@ public class Agendamento extends javax.swing.JDialog {
     
     Configuracao config = new Configuracao();
     Cliente c = new Cliente(null, true);
-
+    public classe.objetos.Agendamento agend;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -214,6 +214,7 @@ public class Agendamento extends javax.swing.JDialog {
         }else{
             getValores();
             JOptionPane.showMessageDialog(null, "Agendamento salvo");
+            dispose();
         }        
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -266,7 +267,6 @@ public class Agendamento extends javax.swing.JDialog {
     }
    
     public void getValores(){
-        classe.objetos.Agendamento agend;
         agend = new classe.objetos.Agendamento(
                 "nulo n faz diferença",
                 lblSetCodigo.getText(),
@@ -275,6 +275,7 @@ public class Agendamento extends javax.swing.JDialog {
                 cbxHora.getSelectedItem()+"",
                 atxDescricao.getText()
         );
+        
         System.out.println(agend.inserirAGD());//falta lançar no banco
     }
 
