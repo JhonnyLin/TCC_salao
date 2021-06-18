@@ -1,11 +1,15 @@
 package Telas;
 
-public class AbertoCliente extends javax.swing.JInternalFrame {
+import classe.genericas.Tabela;
 
-    public AbertoCliente() {
+public class Estoque extends javax.swing.JInternalFrame {
+
+    public Estoque() {
         initComponents();       
+        tb.criarTabelas(jTable1, nomes);
     }
-    
+    String [] nomes = {"cod","Nome", "Qntd", "Vl.Compra", "Vl.Venda", "Vl.Estoque" };
+    Tabela tb = new Tabela();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -13,13 +17,9 @@ public class AbertoCliente extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnNovo = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         lblSubTitulo = new javax.swing.JLabel();
         lblTitulo = new javax.swing.JLabel();
-        pnlData = new javax.swing.JPanel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -33,7 +33,7 @@ public class AbertoCliente extends javax.swing.JInternalFrame {
         );
 
         setClosable(true);
-        setTitle("Cliente");
+        setTitle("Estoque");
         setMaximumSize(new java.awt.Dimension(675, 479));
         setMinimumSize(new java.awt.Dimension(675, 479));
         setPreferredSize(new java.awt.Dimension(675, 479));
@@ -52,10 +52,6 @@ public class AbertoCliente extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(20, 39, 490, 390);
 
-        btnNovo.setText("Pagar");
-        getContentPane().add(btnNovo);
-        btnNovo.setBounds(530, 360, 110, 31);
-
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,38 +60,12 @@ public class AbertoCliente extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnCancelar);
         btnCancelar.setBounds(530, 400, 110, 31);
-
-        jLabel1.setText("Filtro:");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(450, 10, 60, 20);
         getContentPane().add(lblSubTitulo);
         lblSubTitulo.setBounds(90, 10, 250, 20);
 
-        lblTitulo.setText("Historico:");
+        lblTitulo.setText("Estoque:");
         getContentPane().add(lblTitulo);
         lblTitulo.setBounds(20, 10, 90, 20);
-
-        javax.swing.GroupLayout pnlDataLayout = new javax.swing.GroupLayout(pnlData);
-        pnlData.setLayout(pnlDataLayout);
-        pnlDataLayout.setHorizontalGroup(
-            pnlDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDataLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlDataLayout.setVerticalGroup(
-            pnlDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDataLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        getContentPane().add(pnlData);
-        pnlData.setBounds(520, 0, 140, 40);
-
-        getAccessibleContext().setAccessibleName("Cliente");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,14 +77,10 @@ public class AbertoCliente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnNovo;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSubTitulo;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel pnlData;
     // End of variables declaration//GEN-END:variables
 }
