@@ -1,6 +1,7 @@
 package Telas;
 
 import classe.genericas.Tabela;
+import java.sql.SQLException;
 
 public class Abertos extends javax.swing.JInternalFrame {
 
@@ -8,7 +9,7 @@ public class Abertos extends javax.swing.JInternalFrame {
         initComponents();
         tb.criarTabelas(jTable1, nomes);
     }
-    private String [] nomes = {"Data","N° Atendimento", "Cliente", "Valor" };
+    private String [] nomes = {"Data","N° Atendimento", "Cliente", "Telefone", "Valor" };
     Tabela tb = new Tabela();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -17,8 +18,6 @@ public class Abertos extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btnNovo = new javax.swing.JButton();
-        btnExcel = new javax.swing.JButton();
         btnPagar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         lblSubTitulo = new javax.swing.JLabel();
@@ -55,14 +54,6 @@ public class Abertos extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(20, 39, 490, 390);
 
-        btnNovo.setText("Novo");
-        getContentPane().add(btnNovo);
-        btnNovo.setBounds(530, 360, 110, 31);
-
-        btnExcel.setText("Excel");
-        getContentPane().add(btnExcel);
-        btnExcel.setBounds(530, 280, 110, 31);
-
         btnPagar.setText("Pagar");
         btnPagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +61,7 @@ public class Abertos extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnPagar);
-        btnPagar.setBounds(530, 320, 110, 31);
+        btnPagar.setBounds(530, 360, 110, 31);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,15 +86,17 @@ public class Abertos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPagarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        tb.limparTabela(jTable1, nomes);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    public void buscarDevedores() throws SQLException{    
+        String query = "SELECT id_atendimento, vl_pagamento, id_pagamentos  FROM pagamentos WHERE id_tipo_pagamento= 'FIADO'";
+        tb.insDevedores(query, nomes.length);
+    }
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnExcel;
-    private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnPagar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -3,13 +3,13 @@ package classe.objetos;
 public class Agendamento {
     private String id_Agendamento;
     private String id_Cliente;
-    private int id_Atendente;
+    private String id_Atendente;
     private String dt_Atendimento;
-    private int hr_Atendimento;
+    private String hr_Atendimento;
     private String ds_Atendimento;
     
-    public Agendamento(String id_Agendamento, String id_Cliente, int id_Atendente, String dt_Atendimento,
-            int hr_Atendimento, String ds_Atendimento){
+    public Agendamento(String id_Agendamento, String id_Cliente, String id_Atendente, String dt_Atendimento,
+            String hr_Atendimento, String ds_Atendimento){
         this.id_Agendamento = id_Agendamento;
         this. id_Cliente =  id_Cliente;
         this.id_Atendente = id_Atendente;
@@ -22,11 +22,11 @@ public class Agendamento {
         this.id_Cliente = indice;
         return true;
     }
-    public boolean setAtendente(int indice) {
+    public boolean setAtendente(String indice) {
         this.id_Atendente = indice;
         return true;
     }
-    public boolean setHora(int indice) {
+    public boolean setHora(String indice) {
         this.hr_Atendimento = indice;
         return true;
     }
@@ -42,13 +42,13 @@ public class Agendamento {
     public String getCliente(){
         return id_Cliente;
     }
-    public int getAtendente(){
+    public String getAtendente(){
         return id_Atendente;
     }
     public String getData(){
         return dt_Atendimento;
     }
-    public int getHora(){
+    public String getHora(){
         return hr_Atendimento;
     }
     public String getDescricao(){
@@ -59,9 +59,13 @@ public class Agendamento {
     ///////////////////////////////C\BD//////////////////////////////
     ///////////////////////////só mandar parametros//////////////////
     //inserir
-    public boolean inserirBD() {
-        return false;
+    public String inserirAGD(){
+        //definindo a tabela e os campos para inserir
+        String q = "INSERT INTO agendamento (id_cliente, nm_atendente, dt_agendamento, hr_atendimento, ds_adendamento) ";
+        String a = "VALUES('"+ getCliente() +"', '"+getAtendente() +"' ,'"+ getData()+"','"+ getHora() +"','"+ getDescricao() +"')";
+        return q+a;
     }
+    
     //excluir
     public boolean excluirBD() {
         return false;

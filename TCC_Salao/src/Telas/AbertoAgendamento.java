@@ -8,6 +8,8 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
     public AbertoAgendamento(){
         initComponents();
         tb.criarTabelas(tblAgenda, nomes);
+        agenda.agendamento();
+        inicio();
     }
     String [] nomes = {"Data","Hora","Atendente","Cliente", "Descrição" };
     Configuracao config = new Configuracao();
@@ -110,6 +112,9 @@ public class AbertoAgendamento extends javax.swing.JInternalFrame {
         agenda.exluirBD(tblAgenda.getSelectedRow());
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    public void inicio(){
+        agenda.insTb(tb);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgendar;

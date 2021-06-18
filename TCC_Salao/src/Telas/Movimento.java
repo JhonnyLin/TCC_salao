@@ -8,7 +8,7 @@ public class Movimento extends javax.swing.JInternalFrame {
         initComponents();
         tb.criarTabelas(jTable1, nomes);
     }
-    String [] nomes = {"Data", "Tipo", "Valor", "Saldo" };
+    String [] nomes = {"Data","Atendimento", "Tipo", "Valor", "Saldo" };
     Tabela tb = new Tabela();
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,9 +71,14 @@ public class Movimento extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        tb.limparTabela(jTable1, nomes);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+    
+    public void buscarMovimento(){    
+        String query = "SELECT dt_operacao, id_vinculado  FROM operacoes WHERE id_tipo_operacao= 'CREDITO'";
+        tb.insMovimento(query, nomes.length);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

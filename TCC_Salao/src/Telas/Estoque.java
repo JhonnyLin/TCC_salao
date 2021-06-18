@@ -74,6 +74,10 @@ public class Estoque extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    public void buscarProdutos(){    
+        String query = "SELECT cd_ServProd, nm_ServProd, qt_Prod, vl_compra, vl_ServProd  FROM servprod WHERE bl_Serv= '0'";
+        tb.insEstoque(query, nomes.length);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

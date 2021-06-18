@@ -189,9 +189,9 @@ public class ServProd extends javax.swing.JDialog {
             a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd)";
             f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"')";
         }else{
-            a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd, vl_ServProd, qt_Prod)";
+            a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd,vl_compra, vl_ServProd, qt_Prod)";
             String b = JOptionPane.showInputDialog("Quantidade em estoque", 0);
-            f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+dados[1]+"','"+b+"')";
+            f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+"0.0"+"','"+dados[1]+"','"+b+"')";
         }
         ConexaoBD.executar(a+f);
         limpeza();

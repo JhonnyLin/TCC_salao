@@ -1,6 +1,7 @@
 package Telas;
 
 import classe.genericas.Configuracao;
+import javax.swing.JOptionPane;
 
 public class Agendamento extends javax.swing.JDialog {
 
@@ -72,6 +73,8 @@ public class Agendamento extends javax.swing.JDialog {
         jLabel8.setText("Horario:");
 
         jLabel9.setText("Descrição:");
+
+        cbxAtendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alex", "Jhonny", "Julia" }));
 
         lblSetCodigo.setText("00000000");
 
@@ -206,7 +209,12 @@ public class Agendamento extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        getValores();
+        if(lblSetCodigo.getText().equals("00000000")){
+            JOptionPane.showMessageDialog(null, "Favor selecinar um cliente");
+        }else{
+            getValores();
+            JOptionPane.showMessageDialog(null, "Agendamento salvo");
+        }        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -258,20 +266,16 @@ public class Agendamento extends javax.swing.JDialog {
     }
    
     public void getValores(){
-        classe.objetos.Agendamento agend = new classe.objetos.Agendamento(
-                                                                        "nulo n faz diferença",
-                                                                        lblSetCodigo.getText(),
-                                                                        cbxAtendente.getItemCount(),
-                                                                        "data",        
-                                                                        cbxHora.getItemCount(),
-                                                                        atxDescricao.getText()
-                                                                        );
-        //metodo verificar se o registro esta np bd
-        //if(){
-        //popup de confirmação
-        //}else{
-        //popup de já existe no banco
-        //}
+        classe.objetos.Agendamento agend;
+        agend = new classe.objetos.Agendamento(
+                "nulo n faz diferença",
+                lblSetCodigo.getText(),
+                cbxAtendente.getSelectedItem()+"",
+                "18/06/2021",
+                cbxHora.getSelectedItem()+"",
+                atxDescricao.getText()
+        );
+        System.out.println(agend.inserirAGD());//falta lançar no banco
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
