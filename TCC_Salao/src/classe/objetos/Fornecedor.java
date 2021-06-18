@@ -8,6 +8,7 @@ public class Fornecedor {
     private String cd_Telefone;    
     private String ds_Endereco;
     
+    
     public Fornecedor(String idFornecedor,String CNPJ, String nm_Fornecedor,String ds_Email, String cd_Telefone, String ds_Endereco){
         this.idFornecedor = idFornecedor;
         this.CNPJ = CNPJ;
@@ -55,6 +56,27 @@ public class Fornecedor {
     }
     
     ///////////////////////////////C\BD///////////////////////////////
+    //////////////////////////////OrçBD//////////////////////////////
+   
+    
+//    public void criarTabelas(JTable jTabela, String camposBD, String tabelaBD, int prodServ, String nomes[] ){
+//        //prodServ 1 ou 0 que esta na tabela banco de dados
+//        // 0 = produtos
+//        // 1 = Serviços
+//        String query = "SELECT "+ camposBD +" FROM "+ tabelaBD +" WHERE bl_Serv= '"+prodServ+"'";
+//        //prepara model para tabela
+//        dtm = new DefaultTableModel();
+//        //add as colunas na tabela
+//        jTabela.setModel(dtm);
+//        for(int i =0; i<nomes.length; i++){
+//            //adiciona os nomes no dtm que é o model
+//            //ele é quem adiciona os dados na tabela
+//            dtm.addColumn(nomes[i]);
+//        } 
+//        inserir(query, nomes.length);
+//    }
+
+
     //verifica existencia
     public boolean existe(){
         //pesquisar por nome, telefone e email.

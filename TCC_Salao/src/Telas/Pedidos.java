@@ -169,14 +169,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         fornecedor.orcamento();        
+        fornecedor.limparCampos();
         config.tela("Orçamento Fornecedor", fornecedor);
         if(fornecedor.x){
-            fornec = fornecedor.fornec;
-            lblSetNome.setText(fornec.nome());
-            lblSetEmail.setText(fornec.getEmail());
-            lblSetCNPJ.setText(fornec.getCNPJ());
-            lblSetTel.setText(fornec.getTelefone());
-            pedidoC.setIDFornecedor(fornec.getCod());
+            inserir(fornecedor.fornec);
         }else{
             Limpar();
             JOptionPane.showMessageDialog(null, "Sem Fornecedor");
@@ -205,16 +201,16 @@ public class Pedidos extends javax.swing.JInternalFrame {
             if(jTable1.getRowCount()== 0){
                 JOptionPane.showMessageDialog(null, "Favor Adicionar Produto!");
             }else{
-//                try {
-//                    ConexaoBD.connect();
-//                    pedidoC.inserirPedidoCompraBD();
-//                    pedidoC.inserirItemOrcamento();
-//                    ConexaoBD.desconnect();
+                try {
+                    ConexaoBD.connect();
+                    pedidoC.inserirPedidoCompraBD();
+                    pedidoC.inserirItemOrcamento();
+                    ConexaoBD.desconnect();
                     Limpar();
                     tabela.limparTabela(jTable1, nomesS);
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
-//                }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Pedidos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -225,6 +221,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
         lblSetNome.setText("XXXXXXXXXXXXXXXXX XXXXXXXXXXXXX LTDA");
         lblSetTel.setText("(XX) XXX-XXX-XXX");
         fornec = null;
+    }
+    public void inserir(classe.objetos.Fornecedor fornec){
+        this.fornec = fornec;
+        lblSetNome.setText(fornec.nome());
+        lblSetEmail.setText(fornec.getEmail());
+        lblSetCNPJ.setText(fornec.getCNPJ());
+        lblSetTel.setText(fornec.getTelefone());
+        pedidoC.setIDFornecedor(fornec.getCod());
     }
     
     public void opCompra(boolean on){

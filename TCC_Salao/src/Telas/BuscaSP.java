@@ -14,6 +14,7 @@ public class BuscaSP extends javax.swing.JDialog {
         inserirImg();
         conec.connect();
     }
+    
     ConexaoBD conec = new ConexaoBD();
     private Imagens imge = new Imagens();    
     private Tabela tabela = new Tabela();

@@ -3,21 +3,26 @@ package Telas;
 import ClasseBD.ConexaoBD;
 import classe.genericas.Configuracao;
 import classe.genericas.Imagens;
+import classe.genericas.Tabela;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-public class Fornecedor extends javax.swing.JDialog {
 
+public class Fornecedor extends javax.swing.JDialog {
+    private Tabela tb = new Tabela();
     public Fornecedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         inserirImg();
+        criarTabela();
     }
+    private String [] nomes = {"Data","N° Orçamento", "Valor"};
     boolean x = false;
     String a;
+    Inicio ini;
     Configuracao config = new Configuracao();
     classe.objetos.Fornecedor fornec;
     @SuppressWarnings("unchecked")
@@ -195,6 +200,7 @@ public class Fornecedor extends javax.swing.JDialog {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         novo();
         limparCampos();
+        tb.limparTabela(tblOrcamento, nomes);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnPesqCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqCodActionPerformed
@@ -203,6 +209,8 @@ public class Fornecedor extends javax.swing.JDialog {
         try {
             ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            tb.limparTabela(tblOrcamento, nomes);
+            InserirOrcamento(fornec.getCod());
             ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -215,6 +223,8 @@ public class Fornecedor extends javax.swing.JDialog {
         try {
             ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            tb.limparTabela(tblOrcamento, nomes);
+            InserirOrcamento(fornec.getCod());
             ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -227,6 +237,8 @@ public class Fornecedor extends javax.swing.JDialog {
         try {
             ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            tb.limparTabela(tblOrcamento, nomes);
+            InserirOrcamento(fornec.getCod());
             ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -245,6 +257,10 @@ public class Fornecedor extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Fornecedor Cadastrado!");
         }else if(this.getTitle().equals("Orçamento Fornecedor")){
             x = true;
+        }else if(this.getTitle().equals("Buscar Fornecedor")){
+            ini.abriOrcamento();
+            ini.pedido.inserir(fornec);
+            dispose();
         }
         dispose();
         limparCampos();
@@ -256,6 +272,8 @@ public class Fornecedor extends javax.swing.JDialog {
         try {
             ConexaoBD.connect();
             RetornarFornecedor(ConexaoBD.rsexecutar(query));
+            tb.limparTabela(tblOrcamento, nomes);
+            InserirOrcamento(fornec.getCod());
             ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Fornecedor.class.getName()).log(Level.SEVERE, null, ex);
@@ -315,7 +333,16 @@ public class Fornecedor extends javax.swing.JDialog {
         String query = q+campo+"= '"+texto+"'";
         return query;
     }
+        
+    public void criarTabela(){
+        tb.criarTabelas(tblOrcamento, nomes);
+    }
     
+    public void InserirOrcamento(String id_fornecedor){
+    String query = "SELECT ds_data, idpedido_compra, vl_pedido FROM pedido_compra WHERE id_fornecedor= '"+id_fornecedor+"'";
+//    System.out.println(query);
+    tb.inserir(query, 3);
+    }
     public void RetornarFornecedor(ResultSet rs ) throws SQLException{
         if(rs.next()){
             fornec = new classe.objetos.Fornecedor(rs.getString(1), rs.getString(3), rs.getString(2), rs.getString(5), rs.getString(4), rs.getString(6));
@@ -404,6 +431,7 @@ public class Fornecedor extends javax.swing.JDialog {
         mcrTelFornecedor.setText("");        
         txtEmaiFornecedor.setText("");
         atxEndFornecedor.setText("");
+        tb.limparTabela(tblOrcamento, nomes);//atenção
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea atxEndFornecedor;

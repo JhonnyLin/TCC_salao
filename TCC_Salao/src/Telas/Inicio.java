@@ -378,6 +378,8 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        fornecedor.ini = this;
+        fornecedor.limparCampos();
         fornecedor.buscar();
         config.tela("Buscar Fornecedor", fornecedor);
         
@@ -385,6 +387,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         pedido.opCompra(false);
+        pedido.Limpar();
         config.tela("Pedidos",pedido, desktop);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
@@ -435,6 +438,10 @@ public class Inicio extends javax.swing.JFrame {
         });
     }
     
+    public void abriOrcamento(){
+        pedido.opCompra(false);
+        config.tela("Pedidos",pedido, desktop);  
+    }
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
