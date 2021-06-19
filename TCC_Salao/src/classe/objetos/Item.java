@@ -83,7 +83,9 @@ public class Item {
         String a = "VALUES('"+ id_atendimento +"','"+ getCodigo() +"','"+ quantidade +"','"+ getValor()+"')";
         //teste
 //        System.out.println(q+a);
+        ConexaoBD.connect();
         ConexaoBD.executar(q+a);
+        ConexaoBD.desconnect();
         return q+a;
     }
     //Atualizar banco

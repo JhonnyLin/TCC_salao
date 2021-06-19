@@ -128,15 +128,24 @@ public class Atendimento {
         //colocando as variaveis na quary
         String a = "VALUES('"+ getIdCliente() +"','"+ getTotal()+"')";
         //teste
-//        System.out.println(q+a);
+        System.out.println(q+a);
+        ConexaoBD.connect();
         ConexaoBD.executar(q+a);
         ResultSet rs = ConexaoBD.rsexecutar( "SELECT last_insert_id()");
-        rs.next();
-        inserirItemBD(rs.getString(1));
-        inserirPagamentoBD(rs.getString(1));
-        Operacao op = new Operacao(TiposOperacoes.CREDITO, rs.getString(1) ,"data");
-        op.inserir();
-        return rs.getString(1);
+        
+        System.out.println("antes");
+        while(rs.next()){
+            System.out.println("depois");
+            inserirItemBD(rs.getString(1));
+            System.out.println("item");
+            inserirPagamentoBD(rs.getString(1));
+            System.out.println("pagamento");
+            Operacao op = new Operacao(TiposOperacoes.CREDITO, rs.getString(1) ,"18/06/2021");
+            op.inserir();
+        }
+        
+        
+        return "kkk";
     }
     
     public void inserirPagamentoBD(String id){

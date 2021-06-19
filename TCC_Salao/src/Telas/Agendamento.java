@@ -271,7 +271,7 @@ public class Agendamento extends javax.swing.JDialog {
                 "nulo n faz diferença",
                 lblSetCodigo.getText(),
                 cbxAtendente.getSelectedItem()+"",
-                "18/06/2021",
+                "19/06/2021",
                 cbxHora.getSelectedItem()+"",
                 atxDescricao.getText()
         );

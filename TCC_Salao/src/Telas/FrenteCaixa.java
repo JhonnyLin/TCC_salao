@@ -32,7 +32,6 @@ public class FrenteCaixa extends javax.swing.JFrame {
     Imagens imge =  new Imagens();
     Cliente c = new Cliente(null, true);
     BuscaSP bsp = new BuscaSP(null, true);
-//    Fornecedor f = new Fornecedor(null, true);
     ServProd s = new ServProd(null, true);
     ConexaoBD cxbd = new ConexaoBD();
     Atendimento atd = new Atendimento();
@@ -437,7 +436,11 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRapido3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido3ActionPerformed
-        criarItem("3");
+        if(rbtServico.isSelected() == true){
+            criarItem("5");
+        }else{
+            criarItem("0");
+        }
     }//GEN-LAST:event_btnRapido3ActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
@@ -501,43 +504,74 @@ public class FrenteCaixa extends javax.swing.JFrame {
 
     private void btnRapido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido1ActionPerformed
        if(rbtServico.isSelected() == true){
-           JOptionPane.showMessageDialog(null, "serviço");
+           criarItem("1");
        }else{
-           JOptionPane.showMessageDialog(null, "produto");
+           criarItem("2");
        }
-       
     }//GEN-LAST:event_btnRapido1ActionPerformed
 
     private void btnRapido2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido2ActionPerformed
-        criarItem("2");
+        if(rbtServico.isSelected() == true){
+            criarItem("4");
+        }else{
+            criarItem("8");
+        }        
     }//GEN-LAST:event_btnRapido2ActionPerformed
 
     private void btnRapido4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido4ActionPerformed
-//        criarTabela.confgTabela("4",txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("6");
+        }else{
+            criarItem("9");
+        }
     }//GEN-LAST:event_btnRapido4ActionPerformed
 
     private void btnRapido5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido5ActionPerformed
-//        criarTabela.confgTabela("5", txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("6");
+        }else{
+            criarItem("11");
+        }
     }//GEN-LAST:event_btnRapido5ActionPerformed
 
     private void btnRapido6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido6ActionPerformed
-//        criarTabela.confgTabela("6", txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("7");
+        }else{
+            criarItem("10");
+        }
     }//GEN-LAST:event_btnRapido6ActionPerformed
 
     private void btnRapido7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido7ActionPerformed
-//        criarTabela.confgTabela("7", txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("13");
+        }else{
+            criarItem("12");
+        }
     }//GEN-LAST:event_btnRapido7ActionPerformed
 
     private void btnRapido8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido8ActionPerformed
-//        criarTabela.confgTabela("8", txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("15");
+        }else{
+            criarItem("1");
+        }
     }//GEN-LAST:event_btnRapido8ActionPerformed
 
     private void btnRapido9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido9ActionPerformed
-//        criarTabela.confgTabela("9",txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("16");
+        }else{
+            criarItem("1");
+        }
     }//GEN-LAST:event_btnRapido9ActionPerformed
 
     private void btnRapido10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido10ActionPerformed
-//        criarTabela.confgTabela("10", txtTotais);
+        if(rbtServico.isSelected() == true){
+            criarItem("16");
+        }else{
+            criarItem("1");
+        }
     }//GEN-LAST:event_btnRapido10ActionPerformed
 
     private void btnRapido11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRapido11ActionPerformed
@@ -621,6 +655,7 @@ public class FrenteCaixa extends javax.swing.JFrame {
     }
         
     public void criarItem(String cod){
+        ConexaoBD.connect();
         ResultSet rs = ConexaoBD.rsexecutar(quarySP(cod));
         try {
             while(rs.next()){
@@ -628,9 +663,17 @@ public class FrenteCaixa extends javax.swing.JFrame {
                                                                     rs.getString(2), //serviço?
                                                                     rs.getString(3), //nome
                                                                     rs.getString(4), //ds
-                                                                    rs.getString(5), //vl
-                                                                    "",              //custo
-                                                                    rs.getString(6));//qntd
+                                                                    rs.getString(6), //vl
+                                                                    rs.getString(5),              //custo
+                                                                    rs.getString(7));//qntd
+                
+//                System.out.println(rs.getString(1));
+//                System.out.println(rs.getString(2));
+//                System.out.println(rs.getString(3));
+//                System.out.println(rs.getString(4));
+//                System.out.println(rs.getString(6));
+//                System.out.println(rs.getString(5));
+//                System.out.println(rs.getString(7));
                 atd.inserir(item, criarTabela);
                 txtTotais.setText(""+atd.getTotal());
             }
@@ -648,8 +691,8 @@ public class FrenteCaixa extends javax.swing.JFrame {
          
     public void ProdServ(Boolean sP){
         JButton [] btn = {btnRapido1, btnRapido2, btnRapido3, btnRapido4, btnRapido5, btnRapido6, btnRapido7, btnRapido8, btnRapido9, btnRapido10,btnRapido11, btnRapido12, btnRapido13, btnRapido14, btnRapido15, btnRapido16, btnRapido17, btnRapido18, btnRapido19, btnRapido20 };
-        String [] codProduto = {"exp1P","exp2P","exp3P","exp4P","exp5P","exp6P","exp7P","exp8P","exp9P","exp10P","exp11P","exp12P","exp13P","exp14P","exp15P","exp16P","exp17P","exp18P","exp19P","exp20P"};
-        String [] codServico = {"exp1","exp2","exp3","exp4","exp5","exp6","exp7","exp8","exp9","exp10","exp11","exp12","exp13","exp14","exp15","exp16","exp17","exp18","exp19","exp20"};
+        String [] codProduto = {"kit A","Kit B","Kit C","S.L.A","C.L.A","S.NANO","C.NANO","CAD","CAD","CAD","CAD","CADP","CAD","CAD","CAD","CAD","CAD","CAD","CAD","CAD"};
+        String [] codServico = {"Escova","Chapa","Sombra","S.Rena","S.Limp","C.M.1","C.M.T","C.M.N","C.FEM","CAD","CAD","CAD","CAD","CAD","CAD","CAD","CAD","CAD","CAD","CAD"};
         //serviços
         if(sP){
             for(int i =0; i<btn.length;i++){

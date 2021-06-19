@@ -61,8 +61,6 @@ public class Inicio extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenu4.setText("jMenu4");
 
@@ -254,18 +252,6 @@ public class Inicio extends javax.swing.JFrame {
 
         MenuBar.add(jMenu3);
 
-        jMenu5.setText("Configurações");
-
-        jMenuItem1.setText("Usuarios");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem1);
-
-        MenuBar.add(jMenu5);
-
         setJMenuBar(MenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,7 +274,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        ConexaoBD.connect();
         buscaSP.configPruduto();
+        ConexaoBD.desconnect();
         config.tela("Bucar Serviço ou Produto", buscaSP);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -298,7 +286,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        ConexaoBD.connect();
         buscaSP.configServico();
+        ConexaoBD.desconnect();
         config.tela("Bucar Serviço ou Produto", buscaSP);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
@@ -325,7 +315,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        servProd.inicializa(true);
+        servProd.inicializa(false);
         config.tela("Cadastrar Serviço ou Produto", servProd);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
@@ -353,7 +343,9 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         try {
+            ConexaoBD.connect();
             abertos.buscarDevedores();
+            ConexaoBD.desconnect();
         } catch (SQLException ex) {
             Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -365,10 +357,6 @@ public class Inicio extends javax.swing.JFrame {
         result.config(abrirCX.inicializacao, "0.0");
         config.tela("Resultado Parcial", result);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        config.tela("Usuarios",openUser,desktop);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         estoque.buscarProdutos();
@@ -421,12 +409,10 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;

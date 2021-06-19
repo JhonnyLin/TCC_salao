@@ -30,7 +30,6 @@ public class ServProd extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         atxDescricao = new javax.swing.JTextArea();
-        mscVlrComp = new javax.swing.JFormattedTextField();
         txtPercent = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -45,11 +44,10 @@ public class ServProd extends javax.swing.JDialog {
         txtVlVenda = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        mscVlrComp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(544, 390));
         setMinimumSize(new java.awt.Dimension(544, 390));
-        setPreferredSize(new java.awt.Dimension(544, 390));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -77,10 +75,6 @@ public class ServProd extends javax.swing.JDialog {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(40, 210, 460, 96);
-
-        mscVlrComp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
-        getContentPane().add(mscVlrComp);
-        mscVlrComp.setBounds(60, 150, 100, 29);
         getContentPane().add(txtPercent);
         txtPercent.setBounds(400, 150, 61, 29);
 
@@ -169,6 +163,8 @@ public class ServProd extends javax.swing.JDialog {
         jLabel9.setText("R$");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(220, 140, 40, 50);
+        getContentPane().add(mscVlrComp);
+        mscVlrComp.setBounds(70, 150, 100, 30);
 
         pack();
         setLocationRelativeTo(null);
@@ -191,9 +187,11 @@ public class ServProd extends javax.swing.JDialog {
         }else{
             a = "INSERT INTO servprod (bl_Serv, nm_ServProd, ds_ServProd,vl_compra, vl_ServProd, qt_Prod)";
             String b = JOptionPane.showInputDialog("Quantidade em estoque", 0);
-            f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+"0.0"+"','"+dados[1]+"','"+b+"')";
+            f = "VALUES("+ serv +",'"+dados[0]+"','"+dados[2]+"','"+mscVlrComp.getText()+"','"+dados[1]+"','"+b+"')";
         }
+        ConexaoBD.connect();
         ConexaoBD.executar(a+f);
+        ConexaoBD.desconnect();
         limpeza();
 
     }//GEN-LAST:event_btnEnviarActionPerformed
@@ -204,10 +202,13 @@ public class ServProd extends javax.swing.JDialog {
 
     private void rbnServActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnServActionPerformed
         inicializa(true);
+        serv = true;
+        
     }//GEN-LAST:event_rbnServActionPerformed
 
     private void rbnProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnProdActionPerformed
         inicializa(false);
+        serv = false;
     }//GEN-LAST:event_rbnProdActionPerformed
 
     private void btnAddProdAservActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProdAservActionPerformed
@@ -268,12 +269,16 @@ public class ServProd extends javax.swing.JDialog {
     }
     
     public void inicializa(boolean serv){
-        txtPercent.setEnabled(serv);
-        mscVlrComp.setEnabled(serv);
         if(serv){
+            this.serv = true;
             rbnServ.setSelected(serv);
+            txtPercent.setEnabled(false);
+            mscVlrComp.setEnabled(false);
         }else{
+            this.serv = false;
             rbnProd.setSelected(true);
+            txtPercent.setEnabled(true);
+            mscVlrComp.setEnabled(true);
         }
     }
     
@@ -304,7 +309,7 @@ public class ServProd extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JFormattedTextField mscVlrComp;
+    private javax.swing.JTextField mscVlrComp;
     private javax.swing.JRadioButton rbnProd;
     private javax.swing.JRadioButton rbnServ;
     private javax.swing.JTextField txtCod;

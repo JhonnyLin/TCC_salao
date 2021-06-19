@@ -28,12 +28,7 @@ public class AbrirCaixa extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
 
-        cbxAtendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxAtendente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxAtendenteActionPerformed(evt);
-            }
-        });
+        cbxAtendente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alex", "Jhonny", "Julia" }));
 
         jLabel1.setText("Operador:");
 
@@ -104,10 +99,6 @@ public class AbrirCaixa extends javax.swing.JDialog {
     Movimento mvm ;
     TiposMovimento tipo;
     
-    private void cbxAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAtendenteActionPerformed
-      
-    }//GEN-LAST:event_cbxAtendenteActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

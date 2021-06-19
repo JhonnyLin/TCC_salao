@@ -47,9 +47,11 @@ public class Operacao {
         //definindo a tabela e os campos para inserir
         String q = "INSERT INTO operacoes (id_tipo_operacao, id_vinculado, dt_operacao) ";
         //colocando as variaveis na quary
-        String a = "VALUES('"+ getTipOperacoes()+"','"+getCodOperacao()+"','"+ getData()+"')";
-//        System.out.println(q+a);
+        String a = "VALUES('"+ getTipOperacoes()+"','"+getCodOperacao()+"','18/06/2021')";
+        System.out.println(q+a);
+        ConexaoBD.connect();
         ConexaoBD.executar(q+a);
+        ConexaoBD.desconnect();
         return q+a;
     }
     

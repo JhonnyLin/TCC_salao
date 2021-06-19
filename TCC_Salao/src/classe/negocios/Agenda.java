@@ -40,18 +40,9 @@ public class Agenda {
                                                         rs.getString(5),                    //hr_Atendimento
                                                         rs.getString(6));                  //ds_Aten
                     
-//                System.out.println("nome"+rs1.getString(1));
-                }
-                System.out.println(rs.getString(1));
-                System.out.println(rs.getString(2));
-                System.out.println(rs.getString(3));
-                System.out.println(rs.getString(4));
-                System.out.println(rs.getString(5));
-                System.out.println(rs.getString(6));
-                
+                }           
                 agenda.add(agend);
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(Agenda.class.getName()).log(Level.SEVERE, null, ex);
         }
